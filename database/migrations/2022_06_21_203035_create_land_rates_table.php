@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Land;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,12 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stamp_duties', function (Blueprint $table) {
+        Schema::create('land_rates', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Land::class);
-            $table->foreignIdFor(User::class);
-            $table->string('file');
 
+            $table->foreignIdFor(Land::class);
+            $table->date('valid_date');
+            $table->date('given_date');
+            $table->string('file');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stamp_duties');
+        Schema::dropIfExists('land_rates');
     }
 };
