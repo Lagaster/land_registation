@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Land;
+use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,18 @@ class ValuationReportFactory extends Factory
      */
     public function definition()
     {
+        $land = $this->faker->numberBetween(10000,100000);
+        $impro = $this->faker->numberBetween(1000,10000);
+        $total =$this->faker->numberBetween(1000,10000);
         return [
-            //
+            'land_id'=>1,
+            'evaluated_at'=>$this->faker->date(),
+            'land'=>$land,
+            'improvement'=>$impro,
+            'total'=>$total,
+            'file'=>$this->faker->imageUrl(),
+            'verified_at'=> Carbon::now()->subDays(random_int(1,60)),
+            'verified_by'=>User::where('role', 'land registrar')->get()-> random()
         ];
     }
 }

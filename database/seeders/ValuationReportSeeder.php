@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ValuationReport;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class ValuationReportSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ValuationReport::factory(15)->create();
     }
 }

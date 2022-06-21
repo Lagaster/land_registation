@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class LandFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'plot_no'=> Str::uuid(),
+            'size'=>$this->faker->numberBetween(1,100),
+            'sheet_no'=>$this->faker->numberBetween(1,10000),
+            'title_deed'=>Str::uuid()
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Land;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class LandSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Land::factory(10)->create();
     }
 }

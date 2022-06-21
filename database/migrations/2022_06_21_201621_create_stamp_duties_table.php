@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreignIdFor(Land::class);
             $table->foreignIdFor(User::class);
             $table->string('file');
+            $table->timestamp('verified_at')->nullable();
+            $table->foreignIdFor(User::class,"verified_by")->nullable();
 
             $table->timestamps();
         });

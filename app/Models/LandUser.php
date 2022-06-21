@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
-
-class LandUser extends Pivot
+use Illuminate\Database\Eloquent\Model;
+class LandUser extends Model
 {
     //
 }
