@@ -15,7 +15,7 @@ class LandRateController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

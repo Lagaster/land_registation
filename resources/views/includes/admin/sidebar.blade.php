@@ -32,20 +32,14 @@
                         <li><a href="ui-cards.html">Cards</a></li>
                     </ul>
                 </li>
-                <li class="nav-small-cap">--- FORMS, TABLE &amp; WIDGETS</li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Valuation Reports</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="form-basic.html">Basic Forms</a></li>
-                    </ul>
+                <li> <a class=" waves-effect waves-dark" href="{{route('valuations.index')}}" aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Valuation Reports</span></a>
+
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-accordion-merged"></i><span class="hide-menu">Land Rates</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="table-basic.html">Basic Tables</a></li>
-                    </ul>
+                <li> <a class=" waves-effect waves-dark" href="{{route('rates.index')}}" aria-expanded="false"><i class="ti-layout-accordion-merged"></i><span class="hide-menu">Land Rates</span></a>
+
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Stamp Duty</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="widget-data.html">Data Widgets</a></li>
+                <li> <a class=" waves-effect waves-dark" href="{{route('stamps.index')}}" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Stamp Duty</span></a>
+                    <ul aria-expanded="false" class="">
                     </ul>
                 </li>
                </ul>
