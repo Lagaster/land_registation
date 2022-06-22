@@ -13,7 +13,7 @@ class StoreLandRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreLandRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'plot_no'=>["required","unique:lands,plot_no,except,id"],
+            'size'=>["required"],
+            'sheet_no'=>["required"],
+            'title_deed'=>["required","unique:lands,plot_no,except,id"],
         ];
     }
 }

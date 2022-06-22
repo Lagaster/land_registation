@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::latest()->with('paid_by')->with('paid_to') ->get();
     }
 
     /**

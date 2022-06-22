@@ -13,7 +13,7 @@ class StoreLandUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StoreLandUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'land_id'=>['required'],
+            'user_id'=>['required'],
+            'status'=>['required'],
+            'start'=>['required'],
+            'end'=>['nullable'],
+            'verified_at'=> ['nullable'],
+            'verified_by'=>['nullable']
         ];
     }
 }

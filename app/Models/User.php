@@ -52,8 +52,7 @@ class User extends Authenticatable
      */
     public function lands(): BelongsToMany
     {
-        return $this->belongsToMany(Land::class, 'land_user', 'user_id', 'land_id')
-        ->withPivot('status','start','end','verified_at') ;
+        return $this->belongsToMany(Land::class, 'land_user', 'user_id', 'land_id');
     }
     public function land_rates_verified(){
         return $this->hasMany(LandRate::class,"verified_by","id");
