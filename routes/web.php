@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\LandRateController;
+use App\Http\Controllers\StampDutyController;
+use App\Http\Controllers\ValuationReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +25,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('valuations', ValuationReportController::class);
+Route::resource('rates', LandRateController::class);
+Route::resource('stamps', StampDutyController::class);
+
 
 include_once "extraWeb.php";

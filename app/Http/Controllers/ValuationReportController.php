@@ -15,7 +15,9 @@ class ValuationReportController extends Controller
      */
     public function index()
     {
-        //
+        $valuations = ValuationReport::all();
+
+        return view('admin.valuations.index',compact('valuations'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ValuationReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.valuations.create');
     }
 
     /**
@@ -47,7 +49,7 @@ class ValuationReportController extends Controller
      */
     public function show(ValuationReport $valuationReport)
     {
-        //
+        return view('admin.valuations.show',compact('$valuationReport'));
     }
 
     /**
@@ -58,7 +60,7 @@ class ValuationReportController extends Controller
      */
     public function edit(ValuationReport $valuationReport)
     {
-        //
+        return view('admin.valuations.edit',compact('$valuationReport'));
     }
 
     /**
@@ -81,6 +83,8 @@ class ValuationReportController extends Controller
      */
     public function destroy(ValuationReport $valuationReport)
     {
-        //
+        $valuationReport->delete();
+        
+
     }
 }
