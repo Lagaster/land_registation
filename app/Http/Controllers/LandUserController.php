@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LandUser;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreLandUserRequest;
 use App\Http\Requests\UpdateLandUserRequest;
-use App\Models\LandUser;
 
 class LandUserController extends Controller
 {
@@ -36,7 +37,10 @@ class LandUserController extends Controller
      */
     public function store(StoreLandUserRequest $request)
     {
-        //
+        LandUser::create($request->validated());
+         Session::flash('success',"Land Assigned to user.");
+        return redirect()->back();
+
     }
 
     /**
@@ -70,7 +74,9 @@ class LandUserController extends Controller
      */
     public function update(UpdateLandUserRequest $request, LandUser $landUser)
     {
-        //
+        $landUser->update($request->validated());
+        Session::flash('success',"Land Assigned to user updated.");
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +87,8 @@ class LandUserController extends Controller
      */
     public function destroy(LandUser $landUser)
     {
-        //
+        $landUser->delete();
+        Session::flash('success',"Land Assigned to user deleted.");
+        return redirect()->route('lands.index');
     }
 }

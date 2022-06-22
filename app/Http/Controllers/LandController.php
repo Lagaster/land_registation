@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLandRequest;
 use App\Http\Requests\UpdateLandRequest;
 use App\Models\Land;
+use Illuminate\Support\Facades\Session;
 
 class LandController extends Controller
 {
@@ -15,7 +16,8 @@ class LandController extends Controller
      */
     public function index()
     {
-        //
+        $lands = Land::with("users")->latest()->get();
+        return $lands;
     }
 
     /**
@@ -25,7 +27,7 @@ class LandController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,7 +38,9 @@ class LandController extends Controller
      */
     public function store(StoreLandRequest $request)
     {
-        //
+        $land = Land::create($request->validated());
+        Session::flash('success',"Land record created");
+        return redirect()->route('lands.index');
     }
 
     /**
@@ -47,7 +51,7 @@ class LandController extends Controller
      */
     public function show(Land $land)
     {
-        //
+        return ;
     }
 
     /**
@@ -70,7 +74,9 @@ class LandController extends Controller
      */
     public function update(UpdateLandRequest $request, Land $land)
     {
-        //
+        $land->update( $request->validated());
+        Session::flash('success',"Land record Updated");
+        return redirect()->route('lands.show',$land);
     }
 
     /**
@@ -81,6 +87,8 @@ class LandController extends Controller
      */
     public function destroy(Land $land)
     {
-        //
+        $land->delete();
+        Session::flash('success',"Land record deleted");
+        return redirect()->route('lands.index');
     }
 }

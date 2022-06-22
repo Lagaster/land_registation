@@ -17,7 +17,6 @@ return new class extends Migration
     {
         Schema::create('land_rates', function (Blueprint $table) {
             $table->id();
-
             $table->foreignIdFor(Land::class);
             $table->date('valid_date');
             $table->date('given_date');
