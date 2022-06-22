@@ -18,7 +18,9 @@ class Land extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'land_user', 'land_id', 'user_id');
+        return $this->belongsToMany(User::class)
+        ->withPivot('status','start','end','verified_at')
+        ->using(LandUser::class);
     }
     /**
      * Get all of the landRates for the Land
