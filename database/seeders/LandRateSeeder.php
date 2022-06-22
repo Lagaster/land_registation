@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Land;
+use App\Models\LandRate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LandSeeder extends Seeder
+class LandRateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class LandSeeder extends Seeder
      */
     public function run()
     {
-        Land::factory(10)->create();
+        LandRate::factory(10)->create();
     }
 }

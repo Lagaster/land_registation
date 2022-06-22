@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('lands', function (Blueprint $table) {
             $table->id();
+            $table->string('plot_no');
+            $table->string('size');
+            $table->string('sheet_no');
+            $table->string('title_deed');
             $table->timestamps();
         });
     }

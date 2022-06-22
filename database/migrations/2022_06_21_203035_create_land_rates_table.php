@@ -15,19 +15,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('land_user', function (Blueprint $table) {
+        Schema::create('land_rates', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
+
             $table->foreignIdFor(Land::class);
-            $table->boolean("status");
-            $table->date("start");
-            $table->date("end")->nullable();
+            $table->date('valid_date');
+            $table->date('given_date');
+            $table->string('file');
             $table->timestamp('verified_at')->nullable();
             $table->foreignIdFor(User::class,"verified_by")->nullable();
-
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('land_user');
+        Schema::dropIfExists('land_rates');
     }
 };

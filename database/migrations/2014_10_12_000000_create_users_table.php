@@ -17,6 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('dob')->nullable();
+            $table->string('image')->nullable();
+            $table->string('national_id')->nullable();
+            $table->string('id_image')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('role')->nullable();//admin,users,land register
+            $table->string('kra_pin')->nullable();
+            $table->string('gender')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

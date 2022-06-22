@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LandUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LandRate>
  */
-class LandUserFactory extends Factory
+class LandRateFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,10 +21,9 @@ class LandUserFactory extends Factory
     {
         return [
             'land_id'=>fn()=>Land::all()->random(),
-            'user_id'=>fn()=>User::all()->random(),
-            'status'=>$this->faker->boolean(40),
-            'start'=>$this->faker->date(),
-            'end'=>$this->faker->date(),
+            'valid_date'=>$this->faker->date(),
+            'given_date'=>$this->faker->date(),
+            'file'=>$this->faker->imageUrl(),
             'verified_at'=> Carbon::now()->subDays(random_int(1,60)),
             'verified_by'=>fn()=>User::where('role', 'land registrar')->get()-> random()
         ];
