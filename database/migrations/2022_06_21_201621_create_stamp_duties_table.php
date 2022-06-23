@@ -20,12 +20,16 @@ return new class extends Migration
             $table->foreignIdFor(Land::class);
             $table->foreignIdFor(User::class);
             $table->string('file');
-            $table->timestamp('verified_at')->nullable();
-            $table->foreignIdFor(User::class,"verified_by")->nullable();
-
+            $table->enum('status',['pending','approved','rejected'])->default('pending');
+            $table->timestamp('verified_at')->nullable();//now()
+            $table->foreignIdFor(User::class,"verified_by")->nullable(); ///auth role land registrar
             $table->timestamps();
         });
     }
+    /**
+     * land able for sell files approved
+     * payment done in full
+     */
 
     /**
      * Reverse the migrations.

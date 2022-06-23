@@ -22,9 +22,9 @@ return new class extends Migration
             $table->boolean("status");
             $table->date("start");
             $table->date("end")->nullable();
+            $table->enum('status',['pending','approved','rejected'])->default('pending');
             $table->timestamp('verified_at')->nullable();
             $table->foreignIdFor(User::class,"verified_by")->nullable();
-
             $table->timestamps();
         });
     }

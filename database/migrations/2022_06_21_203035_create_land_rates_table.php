@@ -21,12 +21,12 @@ return new class extends Migration
             $table->date('valid_date');
             $table->date('given_date');
             $table->string('file');
+            $table->enum('status',['pending','approved','rejected'])->default('pending');
             $table->timestamp('verified_at')->nullable();
             $table->foreignIdFor(User::class,"verified_by")->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

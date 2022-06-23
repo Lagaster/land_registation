@@ -19,10 +19,11 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Land::class);
             $table->date ("evaluated_at");
-            $table->decimal("land");
-            $table->decimal("improvement");
-            $table->decimal('total');
+            $table->decimal("land"); ///1000
+            $table->decimal("improvement"); ///250
+            $table->decimal('total'); ///1250
             $table->string('file');
+            $table->enum('status',['pending','approved','rejected'])->default('pending');
             $table->timestamp('verified_at')->nullable();
             $table->foreignIdFor(User::class,"verified_by")->nullable();
             $table->timestamps();
