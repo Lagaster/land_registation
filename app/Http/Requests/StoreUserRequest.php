@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
             'dob'=> ["required","date"],
 
             'national_id'=> ["required","numeric"],
-            'id_image'=> ["nullable","string"],
+            'id_image'=> ["nullable","file"],
             'phone'=> ["required","string"],
             'address'=> ["required","string"],
             'role'=> ["required"],

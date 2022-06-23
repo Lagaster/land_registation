@@ -36,7 +36,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
-
+@include('includes.messages')
 <body class="skin-blue fixed-layout">
 
     <!-- Main wrapper - style you can find in pages.scss -->

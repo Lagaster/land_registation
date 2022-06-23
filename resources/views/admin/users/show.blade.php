@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-4">
                 <div class="card border-dark my-flex">
-                  <img class="card-img-top  " src="{{ asset('admin/assets/images/users/1.jpg') }}" alt="">
+                  <img class="card-img-top  " src="{{ $user->user_profile() }}" alt="">
                   <div class="card-body">
                     <h4 class="card-title text text-center">{{ $user->name }} <a href="mailto:{{ $user->email }}">{{ $user->email }}</a> </h4>
                     <h4 class=" text text-center" > <span class="badge badge-info">{{Str::upper($user->role)  }}</span> </h4>
@@ -113,6 +113,8 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                                         <form action="{{ route('users.destroy',$user) }}" method="post">
+                                            @method('DELETE')
+                                            @csrf
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </div>
