@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -8,24 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="admin/assets/images/favicon.png">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/assets/images/favicon.png') }}">
+    <title>Lands Systems</title>
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="admin/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <link href="{{ asset('admin/assets/node_modules/morrisjs/morris.css') }}" rel="stylesheet">
     <!--Toaster Popup message CSS -->
-    <link href="admin/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="{{ asset('admin/assets/node_modules/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="admin/dist/css/style.min.css" rel="stylesheet">
+    <link href="{{ asset('admin/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
-    <link href="admin/dist/css/pages/dashboard1.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link href="{{ asset('admin/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
+
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 
 <body class="skin-blue fixed-layout">
@@ -78,32 +87,32 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="admin/assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
+    <script src="{{ asset('admin/assets/node_modules/jquery/jquery-3.2.1.min.js') }}"></script>
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="admin/assets/node_modules/popper/popper.min.js"></script>
-    <script src="admin/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('admin/assets/node_modules/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="admin/dist/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="{{ asset('admin/dist/js/perfect-scrollbar.jquery.min.js') }}"></script>
     <!--Wave Effects -->
-    <script src="admin/dist/js/waves.js"></script>
+    <script src="{{ asset('admin/dist/js/waves.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="admin/dist/js/sidebarmenu.js"></script>
+    <script src="{{ asset('admin/dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
-    <script src="admin/dist/js/custom.min.js"></script>
+    <script src="{{ asset('admin/dist/js/custom.min.js') }}"></script>
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="admin/assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="admin/assets/node_modules/morrisjs/morris.min.js"></script>
-    <script src="admin/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="{{ asset('admin/assets/node_modules/raphael/raphael-min.js') }}"></script>
+    <script src="{{ asset('admin/assets/node_modules/morrisjs/morris.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
     <!-- Popup message jquery -->
-    <script src="admin/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+    <script src="{{ asset('admin/assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
     <!-- Chart JS -->
-    <script src="admin/dist/js/dashboard1.js"></script>
-    <script src="admin/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+    <script src="{{ asset('admin/dist/js/dashboard1.js') }}"></script>
+    <script src="{{ asset('admin/assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
       <!-- This is data table -->
-      <script src="../assets/node_modules/datatables/jquery.dataTables.min.js"></script>
+      <script src="{{ asset('admin/assets/node_modules/datatables/jquery.dataTables.min.js') }}"></script>
       <!-- start - This is for export functionality only -->
       <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
       <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -160,6 +169,7 @@
           ]
       });
       </script>
+      @stack('scripts')
 </body>
 
 </html>

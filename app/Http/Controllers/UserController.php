@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -16,7 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::query()->withCount('lands')->latest()->get();
+
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -26,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -37,7 +41,24 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->validated());
+        $data = $request->validated();
+        if ($data['image']) {
+            # upload User Image
+            $image = $request->file('image')->store('public/profiles' );
+
+            $image =explode('/', $image) ;
+            $data['image'] = end($image);
+        }
+        $data = $request->validated();
+        if ($data['id_image']) {
+            # upload User Image
+            $image = $request->file('image')->store('public/national_id' );
+
+            $image =explode('/', $image) ;
+            $data['id_image'] = end($image);
+        }
+        $data['password'] = Hash::make("password");
+        $user = User::create($data);
         Session::flash('success',"User created");
         return redirect()->route('users.index');
 
@@ -51,7 +72,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show',compact('user'));
     }
 
     /**

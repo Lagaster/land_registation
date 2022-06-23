@@ -45,6 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function national_id_Image(){
+        return "/storage/national_ids".'/'. $this->id_image;
+    }
+
     /**
      * The lands that belong to the User
      *
@@ -52,7 +56,8 @@ class User extends Authenticatable
      */
     public function lands(): BelongsToMany
     {
-        return $this->belongsToMany(Land::class, 'land_user', 'user_id', 'land_id');
+        return $this->belongsToMany(Land::class, 'land_user', 'user_id', 'land_id')
+        ->withPivot('start','end','status','verified_at','verified_by');
     }
     public function land_rates_verified(){
         return $this->hasMany(LandRate::class,"verified_by","id");
@@ -60,6 +65,7 @@ class User extends Authenticatable
     public function valuation_reports_verified(){
         return $this->hasMany(LandRate::class,"verified_by","id");
     }
+
     /**
      * Get all of the stamp_duties for the User
      *

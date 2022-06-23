@@ -24,11 +24,12 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'image'=> ["nullable","file"],
             'name' => ["required","string"],
             'email' => ["required","email","unique:users,email,except,id"],
             'password' =>  ["string","nullable"], // password
             'dob'=> ["required","date"],
-            'image'=> ["nullable","string"],
+
             'national_id'=> ["required","numeric"],
             'id_image'=> ["nullable","string"],
             'phone'=> ["required","string"],
