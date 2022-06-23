@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Land::class);
-            $table->boolean("status");
+            $table->boolean("is_owner");
             $table->date("start");
             $table->date("end")->nullable();
             $table->enum('status',['pending','approved','rejected'])->default('pending');

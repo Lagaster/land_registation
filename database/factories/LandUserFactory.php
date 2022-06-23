@@ -22,7 +22,7 @@ class LandUserFactory extends Factory
         return [
             'land_id'=>fn()=>Land::all()->random(),
             'user_id'=>fn()=>User::all()->random(),
-            'status'=>$this->faker->boolean(40),
+            'is_owner'=>$this->faker->boolean(40),
             'start'=>$this->faker->date(),
             'end'=>$this->faker->date(),
             'verified_at'=> Carbon::now()->subDays(random_int(1,60)),
