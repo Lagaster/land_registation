@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Land::class);
             $table->date ("evaluated_at");
-            $table->decimal("land"); ///1000
+            $table->decimal("landprice"); ///1000
             $table->decimal("improvement"); ///250
             $table->decimal('total'); ///1250
             $table->string('file');

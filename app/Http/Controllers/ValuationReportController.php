@@ -104,7 +104,7 @@ class ValuationReportController extends Controller
 
         $data['verified_by']=Auth::user()->id;
         $data['verified_at']=now();
-        $data['total']=$data['land'] + $data['improvement'];
+        $data['total']=$data['landprice'] + $data['improvement'];
         $ValuationReport->update($data);
 
         Session::flash('success',"Valuation report created");

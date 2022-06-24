@@ -60,7 +60,7 @@
 
                     <div class="form-group col-md-4">
                         <label for="">Land Price </label>
-                        <input type="text" name="land" id="" value="{{ old('land') }}" class="form-control"
+                        <input type="text" name="landprice" id="" value="{{ old('landprice') }}" class="form-control"
                             placeholder="Land Price">
                     </div>
 

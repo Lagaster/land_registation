@@ -15,7 +15,8 @@ class StampDutyController extends Controller
      */
     public function index()
     {
-        //
+        $stampDuties=StampDuty::all();
+        return view('admin.stamps.index',compact('stampDuties'));
     }
 
     /**

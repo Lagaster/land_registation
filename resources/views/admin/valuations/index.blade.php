@@ -35,8 +35,8 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Land Title</th>
-                                    <th>Valuated At</th>
+                                    <th>Land Plot No</th>
+                                    <th>Valuated By</th>
                                     <th>Land</th>
                                     <th>Improvement</th>
                                     <th>Status</th>
@@ -45,8 +45,8 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Land Title</th>
-                                    <th>Valuated At</th>
+                                    <th>Land Plot No</th>
+                                    <th>Valuated By</th>
                                     <th>Land</th>
                                     <th>Improvement</th>
                                     <th>Status</th>
@@ -56,9 +56,9 @@
                             <tbody>
                                 @foreach ($valuationReports as $valuationReport)
                                 <tr>
-                                    <td>{{$valuationReport->title_deed}}</td>
-                                    <td>{{$valuationReport->evaluated_at}}</td>
-                                    <td>{{$valuationReport->land}}</td>
+                                    <td>{{$valuationReport->land->plot_no}}</td>
+                                    <td>{{$valuationReport->verifiedBy->name}}</td>
+                                    <td>{{$valuationReport->landprice}}</td>
                                     <td>{{$valuationReport->improvement}}</td>
                                     <td>{{$valuationReport->status}}</td>
                                     <td>

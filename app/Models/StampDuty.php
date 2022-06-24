@@ -19,8 +19,17 @@ class StampDuty extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function verified_by(): BelongsTo
+    public function verifiedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'verified_by', 'id');
+    }
+    /**
+     * Get the land that owns the StampDuty
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function land(): BelongsTo
+    {
+        return $this->belongsTo(Land::class, 'land_id', 'id');
     }
 }
