@@ -59,7 +59,7 @@
                                                 <a class="btn btn-icon btn-info btn-outline" data-toggle="tooltip"
                                                     data-original-title="View More"
                                                     href="{{ route('users.show', $user) }}">
-                                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
                                             </td>
                                         </tr>

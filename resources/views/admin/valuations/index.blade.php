@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                     <li class="breadcrumb-item active">Valuation</li>
                 </ol>
-                <a type="button" href="{{route('valuations.create')}}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
+                <a type="button" href="{{route('valuationReports.create')}}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
             </div>
         </div>
     </div>
@@ -39,26 +39,39 @@
                                     <th>Valuated At</th>
                                     <th>Land</th>
                                     <th>Improvement</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Land ID</th>
+                                    <th>Land Title</th>
                                     <th>Valuated At</th>
                                     <th>Land</th>
                                     <th>Improvement</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($valuations as $valuation)
+                                @foreach ($valuationReports as $valuationReport)
                                 <tr>
-                                    <td>{{$valuation->title_deed}}</td>
-                                    <td>{{$valuation->evaluated_at}}</td>
-                                    <td>{{$valuation->land}}</td>
-                                    <td>{{$valuation->improvement}}</td>
-                                    <td>/</td>
+                                    <td>{{$valuationReport->title_deed}}</td>
+                                    <td>{{$valuationReport->evaluated_at}}</td>
+                                    <td>{{$valuationReport->land}}</td>
+                                    <td>{{$valuationReport->improvement}}</td>
+                                    <td>{{$valuationReport->status}}</td>
+                                    <td>
+                                        <a class="btn btn-icon btn-info btn-outline" data-toggle="tooltip"
+                                        data-original-title="View More"
+                                        href="{{ route('valuationReports.show',$valuationReport) }}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        <a class="btn ml-2 btn-icon btn-info btn-outline" data-toggle="tooltip"
+                                        data-original-title="Edit"
+                                        href="{{ route('valuationReports.edit',$valuationReport) }}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
