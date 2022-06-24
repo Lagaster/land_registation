@@ -17,7 +17,7 @@ class LandController extends Controller
     public function index()
     {
         $lands = Land::with("users")->latest()->get();
-        return $lands;
+        return view('admin.land.index',compact('lands'));
     }
 
     /**

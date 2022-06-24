@@ -21,6 +21,11 @@ class Land extends Model
         return $this->belongsToMany(User::class,'land_user',"land_id","user_id")
         ->withPivot('start','end','status','verified_at','verified_by');;
     }
+    public function land_owner()
+    {
+        # code...
+        return $this->users()->wherePivotIn("status",["approved"])->get();
+    }
     /**
      * Get all of the landRates for the Land
      *
