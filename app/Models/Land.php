@@ -24,7 +24,7 @@ class Land extends Model
     public function land_owner()
     {
         # code...
-        return $this->users()->wherePivotIn("status",["approved"])->get();
+        return $this->users()->wherePivotIn("status",["approved"])->latest()->first();
     }
     /**
      * Get all of the landRates for the Land
@@ -51,7 +51,7 @@ class Land extends Model
      */
     public function stamp_duties(): HasMany
     {
-        return $this->hasMany(StampDuty::class, 'land_id', 'id');
+        return $this->hasMany(StampDuty::class);
     }
 
     /**
