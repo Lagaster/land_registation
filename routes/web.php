@@ -25,9 +25,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('valuations', ValuationReportController::class);
-Route::resource('rates', LandRateController::class);
-Route::resource('stamps', StampDutyController::class);
+Route::resource('valuationReports', ValuationReportController::class);
+Route::resource('landRates', LandRateController::class);
+Route::resource('stampDuties', StampDutyController::class);
 
 
 include_once "extraWeb.php";

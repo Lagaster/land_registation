@@ -25,7 +25,7 @@ class ValuationReportFactory extends Factory
         return [
             'land_id'=>1,
             'evaluated_at'=>$this->faker->date(),
-            'land'=>$land,
+            'landprice'=>$land,
             'improvement'=>$impro,
             'total'=>$total,
             'file'=>$this->faker->imageUrl(),

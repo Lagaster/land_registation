@@ -13,7 +13,7 @@ class UpdateValuationReportRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateValuationReportRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'land_id' => [ "required"],
+            'evaluated_at' => [ "required"],
+            'land' => [ "required"],
+            'improvement' => [ "required"],
+            'file' => [ "required"],
+            'status' => [ "required"],
         ];
     }
 }

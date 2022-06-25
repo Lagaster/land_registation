@@ -32,13 +32,13 @@
                 </li>
                 <li> <a class=" waves-effect waves-dark" href="#" aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Land Owners</span></a>
 
-                <li> <a class=" waves-effect waves-dark" href="{{route('valuations.index')}}" aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Valuation Reports</span></a>
+                <li> <a class=" waves-effect waves-dark" href="{{route('valuationReports.index')}}" aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Valuation Reports</span></a>
 
                 </li>
-                <li> <a class=" waves-effect waves-dark" href="{{route('rates.index')}}" aria-expanded="false"><i class="ti-layout-accordion-merged"></i><span class="hide-menu">Land Rates</span></a>
+                <li> <a class=" waves-effect waves-dark" href="{{route('landRates.index')}}" aria-expanded="false"><i class="ti-layout-accordion-merged"></i><span class="hide-menu">Land Rates</span></a>
 
                 </li>
-                <li> <a class=" waves-effect waves-dark" href="{{route('stamps.index')}}" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Stamp Duty</span></a>
+                <li> <a class=" waves-effect waves-dark" href="{{route('stampDuties.index')}}" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Stamp Duty</span></a>
                     <ul aria-expanded="false" class="">
                     </ul>
                 </li>

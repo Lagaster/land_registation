@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Land;
+use App\Models\ValuationReport;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreValuationReportRequest;
 use App\Http\Requests\UpdateValuationReportRequest;
-use App\Models\ValuationReport;
 
 class ValuationReportController extends Controller
 {
@@ -15,9 +19,9 @@ class ValuationReportController extends Controller
      */
     public function index()
     {
-        $valuations = ValuationReport::all();
+        $valuationReports = ValuationReport::all();
 
-        return view('admin.valuations.index',compact('valuations'));
+        return view('admin.valuations.index',compact('valuationReports'));
     }
 
     /**
@@ -27,7 +31,8 @@ class ValuationReportController extends Controller
      */
     public function create()
     {
-        return view('admin.valuations.create');
+        $lands = Land::all();
+        return view('admin.valuations.create',compact('lands'));
     }
 
     /**
@@ -38,7 +43,22 @@ class ValuationReportController extends Controller
      */
     public function store(StoreValuationReportRequest $request)
     {
-        //
+        $data = $request->validated();
+        if ($data['file']) {
+            # upload valuation file
+            $file = $request->file('file')->store('public/valuations' );
+
+            $file =explode('/', $file) ;
+            $data['file'] = end($file);
+        }
+
+        $data['verified_by']=Auth::user()->id;
+        $data['verified_at']=now();
+        $data['total']=$data['land'] + $data['improvement'];
+        ValuationReport::create($data);
+
+        Session::flash('success',"Valuation report created");
+        return redirect()->route('valuationReports.index');
     }
 
     /**
@@ -49,7 +69,7 @@ class ValuationReportController extends Controller
      */
     public function show(ValuationReport $valuationReport)
     {
-        return view('admin.valuations.show',compact('$valuationReport'));
+        return view('admin.valuations.show',compact('valuationReport'));
     }
 
     /**
@@ -60,7 +80,8 @@ class ValuationReportController extends Controller
      */
     public function edit(ValuationReport $valuationReport)
     {
-        return view('admin.valuations.edit',compact('$valuationReport'));
+        $lands = Land::all();
+        return view('admin.valuations.edit',compact('valuationReport','lands'));
     }
 
     /**
@@ -72,7 +93,22 @@ class ValuationReportController extends Controller
      */
     public function update(UpdateValuationReportRequest $request, ValuationReport $valuationReport)
     {
-        //
+        $data = $request->validated();
+        if ($data['file']) {
+            # upload valuation file
+            $file = $request->file('file')->store('public/valuations' );
+
+            $file =explode('/', $file) ;
+            $data['file'] = end($file);
+        }
+
+        $data['verified_by']=Auth::user()->id;
+        $data['verified_at']=now();
+        $data['total']=$data['landprice'] + $data['improvement'];
+        $ValuationReport->update($data);
+
+        Session::flash('success',"Valuation report created");
+        return redirect()->route('valuationReports.index');
     }
 
     /**
@@ -84,7 +120,9 @@ class ValuationReportController extends Controller
     public function destroy(ValuationReport $valuationReport)
     {
         $valuationReport->delete();
-        
+
+        Session::flash('success',"Valuation report deleted successfully");
+        return redirect()->route('valuationReports.index');
 
     }
 }
