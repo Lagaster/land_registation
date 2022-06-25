@@ -50,7 +50,7 @@
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-email"></i>
                         <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+                    {{-- <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
                         <ul>
                             <li>
                                 <div class="drop-title">Notifications</div>
@@ -87,7 +87,7 @@
                                 <a class="nav-link text-center link" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </li>
                 <!-- ============================================================== -->
                 <!-- End Comment -->
@@ -95,7 +95,7 @@
                 <!-- ============================================================== -->
                 <!-- Messages -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="icon-note"></i>
                         <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                     </a>
@@ -137,14 +137,14 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 <!-- ============================================================== -->
                 <!-- End Messages -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- mega menu -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-layout-width-default"></i></a>
+                {{-- <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-layout-width-default"></i></a>
                     <div class="dropdown-menu animated bounceInDown">
                         <ul class="mega-dropdown-menu row">
                             <li class="col-lg-3 col-xlg-2 m-b-30">
@@ -233,7 +233,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 <!-- ============================================================== -->
                 <!-- End mega menu -->
                 <!-- ============================================================== -->
@@ -244,15 +244,14 @@
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ auth()->user()->user_profile() }}" alt="" class=""> <span class="hidden-md-down">{{ auth()->user()->name }} &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                     <div class="dropdown-menu dropdown-menu-right animated flipInY">
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                        <a href="{{ route('users.show',auth()->user()) }}" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
                         <!-- text-->
                         <div class="dropdown-divider"></div>
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                        {{-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a> --}}
+
                         <!-- text-->
                         <div class="dropdown-divider"></div>
 

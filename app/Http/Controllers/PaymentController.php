@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bind;
+use App\Models\Land;
+use App\Models\User;
 use App\Models\Payment;
 use App\payment\MpesaGateway;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use App\Models\LandUser;
 
 class PaymentController extends Controller
 {
@@ -18,11 +21,14 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Bind $bind)
     {
-
-
-        $payments = Payment::latest()->with('paid_by')->with('paid_to')->get();
+        $payments = Payment::latest()->where('land_id',$bind->land_id)
+        ->where('paid_by',Auth::user()->id)->get();
+        $paymentTotal = Payment::latest()->where('land_id',$bind->land_id)
+        ->where('paid_by',Auth::user()->id)->sum('amount') ;
+        $land = Land::find($bind->land_id);
+        return view('admin.binds.payments.index',compact('payments','paymentTotal','land'));
     }
 
     /**
@@ -61,18 +67,38 @@ class PaymentController extends Controller
                 'responseDescription' => $response['ResponseDescription'],
                 'customerMessage' => $response['CustomerMessage'],
                 'phoneNumber' => $phone,
-                'amount' => $amount,
+                'amount' => $amount
 
             ]);
             Session::flash('success', $response->customerMessage);
+            $paymentTotal = Payment::latest()->where('land_id',$land)
+            ->where('paid_by',Auth::user()->id)->sum('amount') ;
+            $expectedAmount = Land::find($land)->valuation_Price()->total ;
+            $total =  $expectedAmount -  $paymentTotal ;
+            if ($total < 1) {
+                # code...
+               $la =  LandUser::where('land_id',$land)->where('status','approved')->first() ;
+               $la->status = "approved";
+               $la->end = now();
+            //    $la->verified_at = now();
+            $la->save();
+            $newLand = LandUser::create([
+                'land_id'=>$land,
+                'user_id'=>Auth::user()->id,
+                'is_owner'=>true,
+                'start' => now()
+            ]);
+            Session::flash('success',"The Land registrar will approve your purchase within 24 hours.");
+
+            }
+
             return back();
         } catch (\Throwable $th) {
             //throw $th;
             Session::flash('error', $th->getMessage());
         }
 
-
-        return $response;
+        return back();
     }
 
     public function handle_result(Request $request)

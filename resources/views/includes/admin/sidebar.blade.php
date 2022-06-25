@@ -6,20 +6,22 @@
             <ul id="sidebarnav">
                 <li class="user-pro"> <a class="has-arrow waves-effect waves-dark"
                      href="javascript:void(0)" aria-expanded="false">
-                     <img src="{{ auth()->user()->user_profile() }}" alt="user-img" class="img-circle"><span class="hide-menu">Mark Jeckson</span></a>
+                     <img src="{{ auth()->user()->user_profile() }}" alt="user-img" class="img-circle"><span class="hide-menu">{{ Auth::user()->name }}</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('users.show',auth()->user()) }}"><i class="ti-user"></i> My Profile</a></li>
                     </ul>
                 </li>
                 <li class="nav-small-cap">--- PERSONAL</li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Dashboard <span class="badge badge-pill badge-cyan ml-auto">4</span></span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer">
+                    </i><span class="hide-menu">Payments <span class="badge badge-pill badge-cyan ml-auto">4</span></span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="index.html">Minimal </a></li>
+                        <li><a href="{{ route('confirm.land.transfer.index') }}">Confirm Land Transfer</a></li>
                     </ul>
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Apps</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Binds</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-calendar.html">Calendar</a></li>
+                        <li><a href="{{ route('binds.seller') }}">Seller Binds</a></li>
+                        <li><a href="{{ route('binds.buyer') }}">Buyer Binds</a></li>
                     </ul>
                 </li>
                 <li> <a class=" waves-effect waves-dark" href="{{ route('lands.index') }}" aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Lands</span></a>

@@ -9,6 +9,23 @@ use App\Http\Requests\UpdateLandUserRequest;
 
 class LandUserController extends Controller
 {
+    public function showConfirmLandTransfer()
+    {
+        $landusers =  LandUser::where('verified_at',null)->get();
+
+        return view('admin.binds.landusers.fullpaid',compact('landusers')) ;
+    }
+    public function confirmLandTransfer(LandUser $landUser)
+    {
+        # code...
+        $landUser->update([
+            'verified_at'=> now(),
+            'verified_by'=> auth()->user()->id
+        ]);
+        Session::flash('success',"Land Purchase Confirmed");
+        return back();
+    }
+
     /**
      * Display a listing of the resource.
      *

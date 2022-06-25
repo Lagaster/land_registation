@@ -2,21 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bind;
+use App\Models\User;
+use App\Models\LandUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBindRequest;
 use App\Http\Requests\UpdateBindRequest;
-use App\Models\Bind;
-use Illuminate\Support\Facades\Auth;
 
 class BindController extends Controller
 {
+    public function bindAction(Request $request, Bind $bind)
+    {
+
+        $request->validate([
+            'status'=>"required|string|starts_with:approved,reject"
+        ]);
+
+        # code...
+        $bind->update(
+            [
+                'status'=> trim($request->status)
+            ]
+
+        );
+        return back()->with('success','Bind actions saved');
+    }
+    public function buyerBinds()
+    {
+        $binds = Bind::query()->with('user')->get();
+        return view('admin.binds.buyers',compact('binds'));
+    }
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource of seller binds.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function sellerBinds()
     {
-        //
+        $user = Auth::user();
+        $landIds = LandUser::where('user_id',$user->id)->where('status','approved')->pluck('land_id');
+        $binds = Bind::query()->where('land_id',$landIds)->get();
+
+        return view('admin.binds.seller',compact('binds'));
     }
 
     /**

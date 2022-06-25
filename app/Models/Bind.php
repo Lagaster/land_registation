@@ -27,4 +27,5 @@ class Bind extends Model
     {
         return $this->belongsTo(Land::class);
     }
+
 }
