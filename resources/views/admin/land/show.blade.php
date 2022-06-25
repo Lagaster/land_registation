@@ -94,6 +94,54 @@
 
                                         @endif
 
+                                        <tr>
+                                            <td colspan="3" >
+
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-outline-primary text-bold btn-lg" data-toggle="modal" data-target="#modelbind">
+                                                    Bind To Buy
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modelbind" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Bind To Buy</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                            </div>
+                                                            <form action="{{ route('binds.store') }}" method="post">
+                                                            <div class="modal-body">
+                                                                Land Valuation Price :
+                                                                 @if ($land-> valuation_Price())
+                                                                 <span class="text text-primary" >{{ number_format($land-> valuation_Price()->total)  }} KSH</span>
+
+                                                                @endif
+                                                                @csrf
+                                                                <input type="hidden" class="form-control" name="land_id" id="land_id" value="{{ $land->id }}" >
+
+
+                                                                    <div class="form-group">
+                                                                      <label for="description">Write note to Land Owner</label>
+                                                                      <textarea class="form-control" name="description" id="description" rows="3">{{ old('description') }}</textarea>
+                                                                    </div>
+
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Send &#38; bind</button>
+                                                            </div>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
 
                                     </tbody>
                             </table>
@@ -180,7 +228,7 @@
                                 @foreach ($land->valuation_reports as $report)
                                 <tr>
                                     <td class="text text-primary" scope="row">{{ date("d/m/Y", strtotime($report->evaluated_at) ) }}</td>
-                                    <td>{{ number_format($report->land ) }}</td>
+                                    <td>{{ number_format($report->landprice ) }}</td>
                                     <td>{{ number_format($report->improvement ) }}</td>
                                     <td> <a href="{{ '/storage/valuation_reports/'.$report->file }}" class="text text-info" >{{ strtoupper( $report->status) }}</a> </td>
 

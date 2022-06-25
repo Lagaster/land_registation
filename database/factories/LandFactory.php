@@ -21,7 +21,8 @@ class LandFactory extends Factory
             'plot_no'=> Str::uuid(),
             'size'=>$this->faker->numberBetween(1,100),
             'sheet_no'=>$this->faker->numberBetween(1,10000),
-            'title_deed'=>Str::uuid()
+            'title_deed'=>Str::uuid(),
+            'is_bind'=>$this->faker->boolean(50)
         ];
     }
 }

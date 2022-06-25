@@ -44,6 +44,10 @@ class Land extends Model
     {
         return $this->hasMany(ValuationReport::class);
     }
+    public function valuation_Price()
+    {
+        return $this->valuation_reports()->latest()->first();
+    }
     /**
      * Get all of the stamp_duties for the Land
      *
@@ -62,5 +66,14 @@ class Land extends Model
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class, 'land_id', 'id');
+    }
+    /**
+     * Get all of the binds for the Land
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function binds(): HasMany
+    {
+        return $this->hasMany(Bind::class);
     }
 }

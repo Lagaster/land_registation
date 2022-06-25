@@ -9132,8 +9132,8 @@ button.bg-purple:focus {
 }
 
 .text-primary {
-    color: black !important;
-    font-weight: 800;
+    color: var(--gray) !important;
+    font-weight: 500;
 }
 
 a.text-primary:hover,

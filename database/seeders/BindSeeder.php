@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\LandUser;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LandUserSeeder extends Seeder
+class BindSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class LandUserSeeder extends Seeder
      */
     public function run()
     {
-        LandUser::factory()->count(10)->create();
+        //
     }
 }
