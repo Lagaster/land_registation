@@ -102,5 +102,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Payment::class, 'Paid_to', 'id');
     }
+    /**
+     * Get all of the binds for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function binds(): HasMany
+    {
+        return $this->hasMany(Bind::class);
+    }
 
 }

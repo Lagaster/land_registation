@@ -27,7 +27,7 @@ class LandController extends Controller
      */
     public function create()
     {
-
+        return view("admin.land.create");
     }
 
     /**
@@ -51,7 +51,7 @@ class LandController extends Controller
      */
     public function show(Land $land)
     {
-        return ;
+        return view('admin.land.show',compact('land')) ;
     }
 
     /**

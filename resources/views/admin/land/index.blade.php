@@ -43,7 +43,8 @@
                                         <th>Title Deed</th>
                                         <th>Size</th>
                                         <th>Sheet</th>
-                                        <th>Land owns</th>
+                                        <th>Valuation</th>
+                                        {{-- <th>Land owns</th> --}}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -53,7 +54,18 @@
                                             <td>{{ $land->title_deed }}</td>
                                             <td>{{ $land->size }}</td>
                                             <td>{{ $land->sheet_no }}</td>
-                                            <td>{{ $land->land_owner()->pluck("name") }}</td>
+                                            <td class="text text-info text-bold" >
+                                                @if ($land->valuation_Price())
+                                                    {{ number_format($land->valuation_Price()->total)  . " KSH" }}
+                                                @endif
+
+                                            </td>
+                                            {{-- <td class="tetxt text-primary" >
+
+                                            @if ($land->land_owner())
+                                                {{  $land->land_owner()->pluck("name")  }}
+                                            @endif
+                                            </td> --}}
                                             <td><a href="{{ route('lands.show',$land) }}">More</a></td>
                                         </tr>
 

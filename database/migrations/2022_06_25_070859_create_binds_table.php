@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Land;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +15,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lands', function (Blueprint $table) {
+        Schema::create('binds', function (Blueprint $table) {
             $table->id();
-            $table->string('plot_no');
-            $table->string('size');
-            $table->string('sheet_no');
-            $table->string('title_deed');
-            $table->boolean("is_bind")->default(false); // to allow for buyers to buy the land
+            $table->foreignIdFor(Land::class);
+            $table->foreignIdFor(User::class);
+            $table->enum('status',['pending','approved','rejected','completed'])->default('pending');
+            $table->longText('description');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lands');
+        Schema::dropIfExists('binds');
     }
 };
