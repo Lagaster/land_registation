@@ -47,13 +47,10 @@
                                             <td> {{$landRate->verified_at}} </td>
                                         </tr>
                                         <tr>
-                                            <td>Land Price</td>
-                                            <td> {{$landRate->land}} </td>
+                                            <td>Valid Date</td>
+                                            <td> {{$landRate->valid_date}} </td>
                                         </tr>
-                                        <tr>
-                                            <td>Improvement</td>
-                                            <td> {{$landRate->improvement}} </td>
-                                        </tr>
+
 
                                     </tbody>
                                 </table>
@@ -65,16 +62,16 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td>Total </td>
-                                            <td> {{$landRate->total}} </td>
+                                            <td>Given Date</td>
+                                            <td> {{$landRate->given_date}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Land Title Deed </td>
+                                            <td> {{$landRate->land->title_deed}} </td>
                                         </tr>
                                         <tr>
                                             <td>Status</td>
                                             <td> {{$landRate->status}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>View Certificate</td>
-                                            <td> No </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -83,6 +80,10 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <h3 class="box-title ">Actions</h3>
                             <div class="row">
+                                <div>
+                                    <a class="btn btn-info btn-rounded m-r-5" href="{{route('landRates.edit',$landRate->id)}}" data-toggle="tooltip" title="" > Edit  </a>
+
+                                </div>
                                 <div>
                                     <form action="{{route('approveland.rate',$landRate->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf

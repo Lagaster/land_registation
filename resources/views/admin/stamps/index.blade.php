@@ -66,10 +66,6 @@
                                         data-original-title="View More"
                                         href="{{ route('stampDuties.show',$stampDuty) }}">
                                         <i class="fa fa-eye" aria-hidden="true">View</i>
-                                        <a class="btn ml-2 btn-icon btn-info btn-outline" data-toggle="tooltip"
-                                        data-original-title="Edit"
-                                        href="{{ route('stampDuties.edit',$stampDuty) }}">
-                                        <i class="fa fa-pencil" aria-hidden="true">Edit</i>
                                     </a>
                                     </td>
                                 </tr>

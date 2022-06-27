@@ -72,10 +72,6 @@
                                             <td>Status</td>
                                             <td> {{$valuationReport->status}} </td>
                                         </tr>
-                                        <tr>
-                                            <td>View Certificate</td>
-                                            <td> No </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -83,6 +79,10 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <h3 class="box-title ">Actions</h3>
                             <div class="row">
+                                <div>
+                                    <a class="btn btn-info btn-rounded m-r-5" href="{{route('valuationReports.edit',$valuationReport->id)}}" data-toggle="tooltip" title="" > Edit  </a>
+
+                                </div>
                                 <div>
                                     <form action="{{route('approve.valuation',$valuationReport->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf
