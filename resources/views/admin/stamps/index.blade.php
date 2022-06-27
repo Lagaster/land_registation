@@ -56,7 +56,7 @@
                             <tbody>
                                 @foreach ($stampDuties as $stampDuty)
                                 <tr>
-                                    <td>{{$stampDuty->land->plot_no}}</td>
+                                    <td>{{Str::limit($stampDuty->land->plot_no,10)}}</td>
                                     <td>{{$stampDuty->user->name}}</td>
                                     <td>{{$stampDuty->verifiedBy->name}}</td>
                                     <td>{{$stampDuty->verified_at}}</td>
@@ -65,11 +65,11 @@
                                         <a class="btn btn-icon btn-info btn-outline" data-toggle="tooltip"
                                         data-original-title="View More"
                                         href="{{ route('stampDuties.show',$stampDuty) }}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" aria-hidden="true">View</i>
                                         <a class="btn ml-2 btn-icon btn-info btn-outline" data-toggle="tooltip"
                                         data-original-title="Edit"
                                         href="{{ route('stampDuties.edit',$stampDuty) }}">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil" aria-hidden="true">Edit</i>
                                     </a>
                                     </td>
                                 </tr>

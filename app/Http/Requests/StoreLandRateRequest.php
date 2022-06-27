@@ -13,7 +13,7 @@ class StoreLandRateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class StoreLandRateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'land_id' => [ "required"],
+            'valid_date' => [ "required"],
+            'given_date' => [ "required"],
+            'file' => [ "required"],
+            'status'=>["required"]
         ];
+
     }
 }

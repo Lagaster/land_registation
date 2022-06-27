@@ -56,7 +56,7 @@
                             <tbody>
                                 @foreach ($valuationReports as $valuationReport)
                                 <tr>
-                                    <td>{{$valuationReport->land->plot_no}}</td>
+                                    <td>{{Str::limit($valuationReport->land->plot_no,20)}}</td>
                                     <td>{{$valuationReport->verifiedBy->name}}</td>
                                     <td>{{$valuationReport->landprice}}</td>
                                     <td>{{$valuationReport->improvement}}</td>
@@ -65,7 +65,7 @@
                                         <a class="btn btn-icon btn-info btn-outline" data-toggle="tooltip"
                                         data-original-title="View More"
                                         href="{{ route('valuationReports.show',$valuationReport) }}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" aria-hidden="true">View</i>
                                         <a class="btn ml-2 btn-icon btn-info btn-outline" data-toggle="tooltip"
                                         data-original-title="Edit"
                                         href="{{ route('valuationReports.edit',$valuationReport) }}">
