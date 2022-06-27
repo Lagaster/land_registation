@@ -13,7 +13,7 @@ class StoreStampDutyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreStampDutyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'land_id' => [ "required"],
+            'user_id' => [ "required"],
+            'file' => [ "required"],
+            'status' => [ "required"],
         ];
     }
 }

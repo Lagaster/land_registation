@@ -105,10 +105,11 @@ class ValuationReportController extends Controller
 
         $data['verified_by']=Auth::user()->id;
         $data['verified_at']=now();
-        $data['total']=$data['landprice'] + $data['improvement'];
-        $ValuationReport->update($data);
+        $data['total']=request('landprice') + request('improvement');
 
-        Session::flash('success',"Valuation report created");
+        $valuationReport->update($data);
+
+        Session::flash('success',"Valuation report updated");
         return redirect()->route('valuationReports.index');
     }
     public function approvevaluation(Request $request,$id){
@@ -118,14 +119,14 @@ class ValuationReportController extends Controller
          $post = ValuationReport::find($id);
 
          $post->status = $status;
-         $post->verified_at= $status = request('verified_at') ;
-         $post->verified_by= $status = request('verified_by') ;
+         $post->verified_at= request('verified_at') ;
+         $post->verified_by= request('verified_by') ;
 
 
         if ( $post->save()) {
             # code...
 
-            Session::flash('success',"ValuationReport ". $status ) ;
+            Session::flash('success',"Valuation_Report ". $status ) ;
         }else{
             Session::flash('error',"Error occured" ) ;
         }

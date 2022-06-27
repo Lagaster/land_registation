@@ -30,7 +30,9 @@ Route::put('valuation/approve/{id}',[ValuationReportController::class,'approveva
 
 Route::resource('landRates', LandRateController::class);
 Route::put('landrate/approve/{id}',[LandRateController::class,'approvelandrate'])->name('approveland.rate');
+
 Route::resource('stampDuties', StampDutyController::class);
+Route::put('stamp/approve/{id}',[StampDutyController::class,'approvestamp'])->name('approve.stamp');
 
 
 

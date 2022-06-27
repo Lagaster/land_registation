@@ -103,10 +103,12 @@ class LandRateController extends Controller
 
         $data['verified_by']=Auth::user()->id;
         $data['verified_at']=now();
+
         $landRate->update($data);
 
 
-        return redirect()->route('landRates.index')->with('success','You have succesfully updated this record');
+        Session::flash('success',"Land_Rate record updated");
+        return redirect()->route('landRates.index');
     }
 
     public function approvelandrate(Request $request,$id){
@@ -116,13 +118,13 @@ class LandRateController extends Controller
          $post = LandRate::find($id);
 
          $post->status = $status;
-         $post->verified_at= $status = request('verified_at') ;
-         $post->verified_by= $status = request('verified_by') ;
+         $post->verified_at= request('verified_at') ;
+         $post->verified_by= request('verified_by') ;
 
         if ( $post->save()) {
             # code...
 
-            Session::flash('success',"LandRate ". $status ) ;
+            Session::flash('success',"Land_Rate ". $status ) ;
         }else{
             Session::flash('error',"Error occured" ) ;
         }
@@ -137,5 +139,7 @@ class LandRateController extends Controller
     public function destroy(LandRate $landRate)
     {
         $landRate->delete();
+        Session::flash('success',"LandRate report deleted successfully");
+        return redirect()->route('landRates.index');
     }
 }

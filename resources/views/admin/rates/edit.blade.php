@@ -9,7 +9,7 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">LandRate Create</h4>
+            <h4 class="text-themecolor">LandRate Updates</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
@@ -31,15 +31,18 @@
     <div class="row">
         <div class="card border-success col-md-12">
             <div class="card-body">
-                <h4 class="card-title">Add New LandRate</h4>
+                <h4 class="card-title">Update Land Rate</h4>
                 <p class="card-text">
                 <form action="{{ route('landRates.update',$landRate) }}" class="row" enctype="multipart/form-data"
-                    method="PUT">
+                    method="post">
+                    @csrf
+                    @method('PUT')
+
                     <div class="row">
 
 
                     <div class="form-group col-md-6">
-                        @csrf
+
                         <label for="">Land Title</label>
                         <select class="form-control custom-select" name="land_id" >
                             <option value="{{$landRate->land->id}}">{{$landRate->land->title_deed}}</option>
@@ -73,8 +76,6 @@
                             class="form-control" placeholder="Improvement amount">
                     </div>
 
-
-                    <div class="form-group col-md-4">
                         <input type="text" value="{{$landRate->status}}" name="status" hidden>
                     </div>
                 </div>

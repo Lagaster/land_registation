@@ -7,13 +7,13 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">Valuations</h4>
+            <h4 class="text-themecolor">Land Rate</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
-                    <li class="breadcrumb-item active"> <a href="{{route('landRates.index')}}">valuations</a> </li>
+                    <li class="breadcrumb-item active"> <a href="{{route('landRates.index')}}">landRates</a> </li>
                 </ol>
                 <a type="button" href="{{route('landRates.create')}}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
             </div>
@@ -105,7 +105,7 @@
                                     </form>
                                 </div>
                                 <div>
-                                    <form action="{{route('approveland.rate',$landRate->id)}}" method="post" enctype="multipart/form-data">
+                                    <form action="{{route('landRates.destroy',$landRate->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Reject"> Delete </button>

@@ -13,7 +13,7 @@ class UpdateStampDutyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,11 @@ class UpdateStampDutyRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+            return [
+                'land_id' => [ "required"],
+                'user_id' => [ "required"],
+                'file' => [ "required"],
+                'status' => [ "required"],
+            ];
     }
 }
