@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Land;
+use App\Models\LandRate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreLandRateRequest;
 use App\Http\Requests\UpdateLandRateRequest;
-use App\Models\LandRate;
 
 class LandRateController extends Controller
 {
@@ -15,7 +19,8 @@ class LandRateController extends Controller
      */
     public function index()
     {
-        
+        $landRates=LandRate::all();
+        return view('admin.rates.index',compact('landRates'));
     }
 
     /**
@@ -25,7 +30,8 @@ class LandRateController extends Controller
      */
     public function create()
     {
-        //
+        $lands=Land::all();
+        return view('admin.rates.create',compact('lands'));
     }
 
     /**
@@ -36,7 +42,22 @@ class LandRateController extends Controller
      */
     public function store(StoreLandRateRequest $request)
     {
-        //
+        $data = $request->validated();
+        if ($data['file']) {
+            # upload valuation file
+            $file = $request->file('file')->store('public/landrates' );
+
+            $file =explode('/', $file) ;
+            $data['file'] = end($file);
+        }
+
+        $data['verified_by']=Auth::user()->id;
+        $data['verified_at']=now();
+        LandRate::create($data);
+
+        Session::flash('success',"LandRate report created");
+        return redirect()->route('landRates.index');
+
     }
 
     /**
@@ -47,7 +68,7 @@ class LandRateController extends Controller
      */
     public function show(LandRate $landRate)
     {
-        //
+        return view('admin.rates.show',compact('landRate'));
     }
 
     /**
@@ -58,7 +79,8 @@ class LandRateController extends Controller
      */
     public function edit(LandRate $landRate)
     {
-        //
+        $lands=Land::all();
+        return view('admin.rates.edit',compact('lands','landRate'));
     }
 
     /**
@@ -70,9 +92,44 @@ class LandRateController extends Controller
      */
     public function update(UpdateLandRateRequest $request, LandRate $landRate)
     {
-        //
+        $data = $request->validated();
+        if ($data['file']) {
+            # upload valuation file
+            $file = $request->file('file')->store('public/landrates' );
+
+            $file =explode('/', $file) ;
+            $data['file'] = end($file);
+        }
+
+        $data['verified_by']=Auth::user()->id;
+        $data['verified_at']=now();
+
+        $landRate->update($data);
+
+
+        Session::flash('success',"Land_Rate record updated");
+        return redirect()->route('landRates.index');
     }
 
+    public function approvelandrate(Request $request,$id){
+        $status = request('status') ;
+
+
+         $post = LandRate::find($id);
+
+         $post->status = $status;
+         $post->verified_at= request('verified_at') ;
+         $post->verified_by= request('verified_by') ;
+
+        if ( $post->save()) {
+            # code...
+
+            Session::flash('success',"Land_Rate ". $status ) ;
+        }else{
+            Session::flash('error',"Error occured" ) ;
+        }
+        return back();
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -81,6 +138,8 @@ class LandRateController extends Controller
      */
     public function destroy(LandRate $landRate)
     {
-        //
+        $landRate->delete();
+        Session::flash('success',"LandRate report deleted successfully");
+        return redirect()->route('landRates.index');
     }
 }

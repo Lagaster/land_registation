@@ -7,7 +7,7 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">StampDuties Table</h4>
+            <h4 class="text-themecolor">Stamp Duties Table</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
@@ -29,7 +29,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Stampduty Data Export</h4>
+                    <h4 class="card-title">Stamp Duties Data Export</h4>
                     <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
                     <div class="table-responsive m-t-40">
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
@@ -56,7 +56,7 @@
                             <tbody>
                                 @foreach ($stampDuties as $stampDuty)
                                 <tr>
-                                    <td>{{$stampDuty->land->plot_no}}</td>
+                                    <td>{{Str::limit($stampDuty->land->plot_no,10)}}</td>
                                     <td>{{$stampDuty->user->name}}</td>
                                     <td>{{$stampDuty->verifiedBy->name}}</td>
                                     <td>{{$stampDuty->verified_at}}</td>
@@ -65,11 +65,7 @@
                                         <a class="btn btn-icon btn-info btn-outline" data-toggle="tooltip"
                                         data-original-title="View More"
                                         href="{{ route('stampDuties.show',$stampDuty) }}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                        <a class="btn ml-2 btn-icon btn-info btn-outline" data-toggle="tooltip"
-                                        data-original-title="Edit"
-                                        href="{{ route('stampDuties.edit',$stampDuty) }}">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" aria-hidden="true">View</i>
                                     </a>
                                     </td>
                                 </tr>

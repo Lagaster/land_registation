@@ -40,9 +40,7 @@
                 <li> <a class=" waves-effect waves-dark" href="{{route('landRates.index')}}" aria-expanded="false"><i class="ti-layout-accordion-merged"></i><span class="hide-menu">Land Rates</span></a>
 
                 </li>
-                <li> <a class=" waves-effect waves-dark" href="{{route('stampDuties.index')}}" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Stamp Duty</span></a>
-                    <ul aria-expanded="false" class="">
-                    </ul>
+                <li> <a class=" waves-effect waves-dark" href="{{route('stampDuties.index')}}" aria-expanded="false"><i class="ti-stamp"></i><span class="hide-menu">Stamp Duty</span></a>
                 </li>
                </ul>
         </nav>

@@ -35,7 +35,10 @@
                 <p class="card-text">
                 <form action="{{ route('valuationReports.store') }}" class="row" enctype="multipart/form-data"
                     method="post">
-                    <div class="form-group col-md-4">
+                    <div class="row">
+
+
+                    <div class="form-group col-md-6">
                         @csrf
                         <label for="">Land Title</label>
                         <select class="form-control custom-select" name="land_id">
@@ -45,7 +48,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="file">Valuation Certificate</label>
                         <input type="file" class="form-control-file @error('file') is-invalid @enderror" name="file"
                             id="" placeholder="Valuationn Report Certificate" aria-describedby="fileHelpId">
@@ -58,26 +61,22 @@
 
                     </div>
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="">Land Price </label>
                         <input type="text" name="landprice" id="" value="{{ old('landprice') }}" class="form-control"
                             placeholder="Land Price">
                     </div>
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="">Improvement</label>
                         <input type="text" name="improvement" id="" value="{{ old(" improvement") }}"
                             class="form-control" placeholder="Improvement amount">
                     </div>
 
+                </div>
                     <div class="form-group col-md-4">
-                        <label for="">Status</label>
-                        <select class="form-control custom-select" name="status">
-                            <option>--Select Status--</option>
-                            <option value="pending">Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
+                        <input type="text" hidden name="status" value="pending"
+                        >
                     </div>
                     <input type="text" hidden name="evaluated_at" value="{{now()}}" id="">
                     <button type="submit" class="btn btn-primary">Submit</button>

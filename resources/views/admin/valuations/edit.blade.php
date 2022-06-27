@@ -9,7 +9,7 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">ValuationReport Create</h4>
+            <h4 class="text-themecolor">Valuation_Report Updates</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
@@ -31,15 +31,17 @@
     <div class="row">
         <div class="card border-success col-md-12">
             <div class="card-body">
-                <h4 class="card-title">Add New ValuationReport</h4>
+                <h4 class="card-title">Update Valuation Record</h4>
                 <p class="card-text">
                 <form action="{{ route('valuationReports.update',$valuationReport) }}" class="row" enctype="multipart/form-data"
-                    method="PUT">
+                    method="post">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group col-md-4">
-                        @csrf
+
                         <label for="">Land Title</label>
                         <select class="form-control custom-select" name="land_id">
-                            <option value="{{$valuationReport}}">{{$valuationReport}}</option>
+                            <option value="{{$valuationReport->land->id}}">{{$valuationReport->land->title_deed}}</option>
                             @foreach ($lands as $land)
                             <option value="{{$land->id}}">{{$land->title_deed}}</option>
                             @endforeach
@@ -60,7 +62,7 @@
 
                     <div class="form-group col-md-4">
                         <label for="">Land Price </label>
-                        <input type="text" name="land" id="" value="{{ $valuationReport->land }}" class="form-control"
+                        <input type="text" name="landprice" id="" value="{{ $valuationReport->landprice }}" class="form-control"
                             placeholder="Land Price">
                     </div>
 
@@ -69,16 +71,8 @@
                         <input type="text" name="improvement" id="" value="{{ $valuationReport->improvement }}"
                             class="form-control" placeholder="Improvement amount">
                     </div>
+                    <input type="text" hidden name="status" value="{{$valuationReport->status}}"id="">
 
-                    <div class="form-group col-md-4">
-                        <label for="">Status</label>
-                        <select class="form-control custom-select" name="status">
-                            <option value="{{$valuationReport->status}}">--{{$valuationReport->status}}--</option>
-                            <option value="pending">Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
-                    </div>
                     <input type="text" hidden name="evaluated_at" value="{{$valuationReport->evaluated_at}}" id="">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
