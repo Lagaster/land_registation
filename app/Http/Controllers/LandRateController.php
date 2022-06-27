@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Land;
 use App\Models\LandRate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreLandRateRequest;
 use App\Http\Requests\UpdateLandRateRequest;
@@ -67,7 +68,7 @@ class LandRateController extends Controller
      */
     public function show(LandRate $landRate)
     {
-        return view('admin.rates.show',compact($landRate));
+        return view('admin.rates.show',compact('landRate'));
     }
 
     /**
@@ -108,6 +109,25 @@ class LandRateController extends Controller
         return redirect()->route('landRates.index')->with('success','You have succesfully updated this record');
     }
 
+    public function approvelandrate(Request $request,$id){
+        $status = request('status') ;
+
+
+         $post = LandRate::find($id);
+
+         $post->status = $status;
+         $post->verified_at= $status = request('verified_at') ;
+         $post->verified_by= $status = request('verified_by') ;
+
+        if ( $post->save()) {
+            # code...
+
+            Session::flash('success',"LandRate ". $status ) ;
+        }else{
+            Session::flash('error',"Error occured" ) ;
+        }
+        return back();
+    }
     /**
      * Remove the specified resource from storage.
      *

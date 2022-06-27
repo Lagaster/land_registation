@@ -26,8 +26,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('valuationReports', ValuationReportController::class);
+Route::put('valuation/approve/{id}',[ValuationReportController::class,'approvevaluation'])->name('approve.valuation');
+
 Route::resource('landRates', LandRateController::class);
+Route::put('landrate/approve/{id}',[LandRateController::class,'approvelandrate'])->name('approveland.rate');
 Route::resource('stampDuties', StampDutyController::class);
+
 
 
 include_once "extraWeb.php";

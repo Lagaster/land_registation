@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Land;
 use App\Models\ValuationReport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreValuationReportRequest;
@@ -109,6 +110,26 @@ class ValuationReportController extends Controller
 
         Session::flash('success',"Valuation report created");
         return redirect()->route('valuationReports.index');
+    }
+    public function approvevaluation(Request $request,$id){
+        $status = request('status') ;
+
+
+         $post = ValuationReport::find($id);
+
+         $post->status = $status;
+         $post->verified_at= $status = request('verified_at') ;
+         $post->verified_by= $status = request('verified_by') ;
+
+
+        if ( $post->save()) {
+            # code...
+
+            Session::flash('success',"ValuationReport ". $status ) ;
+        }else{
+            Session::flash('error',"Error occured" ) ;
+        }
+        return back();
     }
 
     /**

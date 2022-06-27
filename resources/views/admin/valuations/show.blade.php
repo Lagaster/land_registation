@@ -40,11 +40,11 @@
                                     <tbody>
                                         <tr>
                                             <td>Verified by:</td>
-                                            <td> {{$valuationReport->verified_by}} </td>
+                                            <td> {{$valuationReport->verifiedBy->name}} </td>
                                         </tr>
                                         <tr>
                                             <td>Valuated at:</td>
-                                            <td> {{$valuationReport->evaluated_at}} </td>
+                                            <td> {{$valuationReport->verified_at}} </td>
                                         </tr>
                                         <tr>
                                             <td>Land Price</td>
@@ -84,18 +84,23 @@
                             <h3 class="box-title ">Actions</h3>
                             <div class="row">
                                 <div>
-                                    <form action="{{route('valuationReports.update',$valuationReport)}}" method="put" enctype="multipart/form-data">
+                                    <form action="{{route('approve.valuation',$valuationReport->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <input type="text" hidden name="status" value="approved" id="">
+                                        <input type="text" hidden name="verified_by" value="{{(Auth::user()->id)}}" id="">
+                                        <input type="text" hidden name="verified_at" value="{{now()}}" id="">
+
                                         <button class="btn btn-success btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Approve"> Approve  </button>
                                     </form>
                                 </div>
                                 <div>
-                                    <form action="{{route('valuationReports.update',$valuationReport)}}" method="put" enctype="multipart/form-data">
+                                    <form action="{{route('approve.valuation',$valuationReport->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <input type="text" hidden name="status" value="rejected" id="">
+                                        <input type="text" hidden name="verified_by" value="{{(Auth::user()->id)}}" id="">
+                                        <input type="text" hidden name="verified_at" value="{{now()}}" id="">
                                         <button class="btn btn-warning btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Reject"> Reject </button>
                                     </form>
                                 </div>

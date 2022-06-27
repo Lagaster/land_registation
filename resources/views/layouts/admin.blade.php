@@ -37,7 +37,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
-@include('includes.messages')
+
 <body class="skin-blue fixed-layout">
 
     <!-- Main wrapper - style you can find in pages.scss -->
@@ -47,6 +47,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
        @include('includes.admin.navbar')
+
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
@@ -54,6 +55,7 @@
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
       @include('includes.admin.sidebar')
+
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -61,6 +63,7 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
+            @include('includes.messages')
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
