@@ -88,6 +88,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <h3 class="box-title ">Actions</h3>
                             <div class="row">
+                                @if (auth()->user()->isAdmin() || auth()->user()->isRegistrar())
                                 <div>
                                     <a class="btn btn-info btn-rounded m-r-5" href="{{route('stampDuties.edit',$stampDuty->id)}}" data-toggle="tooltip" title="" > Edit  </a>
 
@@ -119,6 +120,7 @@
                                         <button class="btn btn-danger btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Reject"> Delete </button>
                                     </form>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
