@@ -24,7 +24,7 @@ class Land extends Model
     public function land_owner()
     {
         # code...
-        return $this->users()->wherePivotIn("status",["approved"])->latest()->first();
+        return $this->users()->wherePivotIn("status",["approved"])->wherePivotIn('is_owner',[true])->latest()->first();
     }
     /**
      * Get all of the landRates for the Land

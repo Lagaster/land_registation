@@ -20,8 +20,11 @@ class LandUserController extends Controller
     {
         # code...
         $landUser->update([
+
             'verified_at'=> now(),
-            'verified_by'=> auth()->user()->id
+            'verified_by'=> auth()->user()->id,
+            'status'=>'approved',
+            'is_owner'=>true
         ]);
         Session::flash('success',"Land Purchase Confirmed");
         return back();

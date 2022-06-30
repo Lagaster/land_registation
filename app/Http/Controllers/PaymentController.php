@@ -81,7 +81,7 @@ class PaymentController extends Controller
             if ($total < 1) {
                 # code...
                $la =  LandUser::where('land_id',$land)->where('status','approved')->first() ;
-               $la->status = "approved";
+               $la->is_owner = false ;
                $la->end = now();
             //    $la->verified_at = now();
             $la->save();
