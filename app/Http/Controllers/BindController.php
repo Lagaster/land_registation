@@ -43,7 +43,8 @@ class BindController extends Controller
     {
         $user = Auth::user();
         $landIds = LandUser::where('user_id',$user->id)->where('status','approved')->pluck('land_id');
-        $binds = Bind::query()->where('land_id',$landIds)->get();
+
+        $binds = Bind::query()->whereIn('land_id',$landIds)->get();
 
         return view('admin.binds.seller',compact('binds'));
     }

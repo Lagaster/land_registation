@@ -57,7 +57,7 @@
                                 @foreach ($valuationReports as $valuationReport)
                                 <tr>
                                     <td>{{Str::limit($valuationReport->land->plot_no,20)}}</td>
-                                    <td>{{$valuationReport->verifiedBy->name}}</td>
+                                    <td>{{$valuationReport->verifiedBy->name ?? ""}}</td>
                                     <td>{{$valuationReport->landprice}}</td>
                                     <td>{{$valuationReport->improvement}}</td>
                                     <td>{{$valuationReport->status}}</td>
