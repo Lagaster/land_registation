@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('lands/transfer/confirm', [LandUserController::class, 'showConfirmLandTransfer'])->name('confirm.land.transfer.index');
     Route::post('lands/transfer/confirm/{landUser}', [LandUserController::class, 'confirmLandTransfer'])->name('confirm.land.transfer.update');
-
+    Route::get('lands/owned',[LandController::class,'myLands'])->name('lands.mylands');
     Route::resource('lands', LandController::class);
     Route::resource('users', UserController::class);
     Route::resource('payments', PaymentController::class)->except("create", "edit");

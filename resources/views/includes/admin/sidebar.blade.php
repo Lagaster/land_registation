@@ -29,6 +29,8 @@
                         <li><a href="">Confirm Land Transfer</a></li>
                     </ul>
                 </li> --}}
+                <li> <a class=" waves-effect waves-dark" href="{{ route('lands.mylands') }}" aria-expanded="false"><i
+                    class="ti-layout-media-right-alt"></i><span class="hide-menu">My Lands</span></a>
                 <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                             class="ti-layout-grid2"></i><span class="hide-menu">Binds</span></a>
                     <ul aria-expanded="false" class="collapse">
@@ -43,12 +45,10 @@
                             class="ti-palette"></i><span class="hide-menu">Users<span
                                 class="badge badge-pill badge-primary text-white ml-auto">25</span></span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">Land Owners</a></li>
                         <li><a href="{{ route('users.index') }}">System Users</a></li>
                     </ul>
                 </li>
-                <li> <a class=" waves-effect waves-dark" href="#" aria-expanded="false"><i
-                            class="ti-layout-media-right-alt"></i><span class="hide-menu">Land Owners</span></a>
+
 
                 <li> <a class=" waves-effect waves-dark" href="{{ route('valuationReports.index') }}"
                         aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">Valuation

@@ -7,10 +7,21 @@ use App\Http\Requests\UpdateLandRequest;
 use App\Models\Land;
 use App\Models\LandUser;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LandController extends Controller
 {
+    public function myLands()
+    {
+        # code...
+        $user = Auth::user();
+        $lands = LandUser::with('land')->whereBelongsTo($user,'owner')
+        ->where('is_owner',true)
+        ->get();
+        // return $lands;
+        return view('admin.land.mylands',compact('lands'));
+    }
     /**
      * Display a listing of the resource.
      *
