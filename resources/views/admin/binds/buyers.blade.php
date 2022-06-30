@@ -77,14 +77,20 @@
                                                         <i class="fa fa-arrow-down" aria-hidden="true">More</i>
                                                     </button>
                                             <div class="dropdown-menu" aria-labelledby="triggerId">
-                                                <a href="{{ route('binds.edit',$bind->id) }}" class="dropdown-item bg-warning"><i class="fa fa-pencil" aria-hidden="true">Edit</i></a>
+                                                @if (in_array($bind->status,['pending']))
+                                                     <a href="{{ route('binds.edit',$bind->id) }}" class="dropdown-item bg-warning"><i class="fa fa-pencil" aria-hidden="true">Edit</i></a>
 
                                                 <form action="{{ route('binds.destroy',$bind->id) }}" method="post">
                                                     <button type="submit" class="dropdown-item bg-danger"><i class="fa fa-trash" aria-hidden="true">Delete</i></button>
                                                 </form>
+                                                @endif
+                                                @if (in_array($bind->status,['approved','completed']))
                                                 <h6 class="dropdown-header">Process</h6>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item bg-success" href="#">Process Payments</a>
+                                                <a class="dropdown-item bg-success" href="{{ route('binds.buyer.payments',$bind->id) }}">Process Payments</a>
+                                                @endif
+
+
                                             </div>
                                         </div>
                                     </td>
