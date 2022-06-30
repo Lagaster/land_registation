@@ -27,11 +27,10 @@
                     <p class="card-text">
                     <form action="{{ route('lands.store') }}" class="row" method="post">
                         @csrf
-                        <div class="form-group col-md-6 ">
+                        <div class="form-group col-md-4 ">
                             <label for="">Title Deed</label>
                             <input type="text" name="title_deed" id="title_deed"
-                                class="form-control  @error('title_deed') is-invalid @enderror "
-                                required
+                                class="form-control  @error('title_deed') is-invalid @enderror " required
                                 value="{{ old('title_deed') }}" placeholder="title deed Number">
 
                             @error('title_deed')
@@ -41,12 +40,11 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-6 ">
+                        <div class="form-group col-md-4 ">
                             <label for="plot_no">PLot Number</label>
                             <input type="text" name="plot_no" id="plot_no"
-                                class="form-control  @error('plot_no') is-invalid @enderror "
-                                required value="{{ old('plot_no') }}"
-                                placeholder="PLot Number">
+                                class="form-control  @error('plot_no') is-invalid @enderror " required
+                                value="{{ old('plot_no') }}" placeholder="PLot Number">
 
                             @error('plot_no')
                                 <span class="invalid-feedback" role="alert">
@@ -55,12 +53,11 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-6 ">
+                        <div class="form-group col-md-4 ">
                             <label for="size">Land Size In Hecters</label>
                             <input type="text" name="size" id="size"
-                                class="form-control  @error('size') is-invalid @enderror "
-                                required value="{{ old('size') }}"
-                                placeholder="title deed Number">
+                                class="form-control  @error('size') is-invalid @enderror " required
+                                value="{{ old('size') }}" placeholder="title deed Number">
 
                             @error('size')
                                 <span class="invalid-feedback" role="alert">
@@ -72,11 +69,27 @@
                         <div class="form-group col-md-6 ">
                             <label for="sheet_no">Sheet Number</label>
                             <input type="text" name="sheet_no" id="sheet_no"
-                                class="form-control  @error('sheet_no') is-invalid @enderror "
-                                required
+                                class="form-control  @error('sheet_no') is-invalid @enderror " required
                                 value="{{ old('sheet_no') }}" placeholder="title deed Number">
 
                             @error('sheet_no')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="land_owner">Select Land Owner</label>
+                            <select class="form-control   @error('land_owner') is-invalid @enderror " name="land_owner"
+                                required id="land_owner">
+                                <option value="" disabled selected>Select land owner</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+
+
+                            </select>
+                            @error('land_owner')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

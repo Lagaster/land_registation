@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLandRequest;
 use App\Http\Requests\UpdateLandRequest;
 use App\Models\Land;
+use App\Models\LandUser;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class LandController extends Controller
@@ -27,7 +29,8 @@ class LandController extends Controller
      */
     public function create()
     {
-        return view("admin.land.create");
+        $users = User::latest()->get();
+        return view("admin.land.create",compact('users'));
     }
 
     /**
@@ -38,7 +41,25 @@ class LandController extends Controller
      */
     public function store(StoreLandRequest $request)
     {
-        $land = Land::create($request->validated());
+        $data = $request->validated();
+        // return $data ;
+        $land = Land::create([
+            "plot_no"=>$data["plot_no"],
+            "size"=>$data[ "size"],
+            "sheet_no"=>$data[ "sheet_no"],
+            "title_deed"=>$data[ "title_deed"]
+        ]);
+        $landowner = LandUser::create(
+            [
+                'land_id'=>$land->id,
+                'user_id'=> $data['land_owner'],
+                'is_owner'=>true,
+                'start'=> now(),
+                'status'=>'approved',
+                'verified_at'=> now(),
+                'verified_by'=> auth()->user()->id
+            ]
+        );
         Session::flash('success',"Land record created");
         return redirect()->route('lands.index');
     }

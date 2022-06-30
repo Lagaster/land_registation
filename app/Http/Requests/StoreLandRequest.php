@@ -27,6 +27,7 @@ class StoreLandRequest extends FormRequest
             'plot_no'=>["required","unique:lands,plot_no,except,id"],
             'size'=>["required"],
             'sheet_no'=>["required"],
+            'land_owner'=>["required","numeric"],
             'title_deed'=>["required","unique:lands,plot_no,except,id"],
         ];
     }

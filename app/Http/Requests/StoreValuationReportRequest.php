@@ -26,10 +26,9 @@ class StoreValuationReportRequest extends FormRequest
         return [
             'land_id' => [ "required"],
             'evaluated_at' => [ "required"],
-            'land' => [ "required"],
+            'landprice' => [ "required"],
             'improvement' => [ "required"],
-            'file' => [ "required"],
-            'status' => [ "required"],
+            'file' => [ "required"]
         ];
     }
 }

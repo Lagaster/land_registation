@@ -48,11 +48,19 @@
                                         </tr>
                                         <tr>
                                             <td>Land Price</td>
-                                            <td> {{$valuationReport->land}} </td>
+                                            <td> {{ number_format($valuationReport->landprice) }} </td>
                                         </tr>
                                         <tr>
                                             <td>Improvement</td>
-                                            <td> {{$valuationReport->improvement}} </td>
+                                            <td> {{ number_format($valuationReport->improvement) }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total </td>
+                                            <td> {{ number_format($valuationReport->total) }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td> {{$valuationReport->status}} </td>
                                         </tr>
 
                                     </tbody>
@@ -65,13 +73,18 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td>Total </td>
-                                            <td> {{$valuationReport->total}} </td>
+                                            <td>Land Title Deed</td>
+                                            <td>{{ $valuationReport->land->title_deed }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Status</td>
-                                            <td> {{$valuationReport->status}} </td>
+                                            <td>Land Plot Number</td>
+                                            <td>{{ $valuationReport->land->plot_no }}</td>
                                         </tr>
+                                        <tr>
+                                            <td>Land Size</td>
+                                            <td>{{ $valuationReport->land->size }}</td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
