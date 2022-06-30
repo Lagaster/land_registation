@@ -45,12 +45,13 @@
                                     <tbody>
                                         @foreach ($landusers as $landuser)
                                         <tr>
-                                            <td scope="row">{{ $landuser->user->name }}</td>
+                                            <td scope="row">{{ $landuser->owner->name }}</td>
                                             <td scope="row">{{ $landuser->land->title_deed }}</td>
                                             <td scope="row">{{ $landuser->land->plot_no }}</td>
-                                            <td scope="row">{{ $landuser->status }}</td>
+                                            <td scope="row text uppercase">{{ $landuser->status }}</td>
                                             <td>
                                                 <form action="{{ route('confirm.land.transfer.update',$landuser) }}" method="post">
+                                                    @csrf
                                                     <button type="submit" class="btn btn-info">confirm</button>
                                                 </form>
                                             </td>

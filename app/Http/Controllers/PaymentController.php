@@ -50,14 +50,17 @@ class PaymentController extends Controller
     public function store(StorePaymentRequest $request)
     {
         $data = $request->validated();
+
         try {
-            $mpesa = new MpesaGateway();
-            $response = $mpesa->pay_land("0707585566", "10");
-            $authUser = User::find(Auth::user()->id);
             $phone = $data['phone'];
             $amount = $data['amount'];
             $land = $data['land_id'];
             $paid_to = $data['paid_to'];
+            $mpesa = new MpesaGateway();
+            $response = $mpesa->pay_land($phone, $amount);
+            $authUser = User::find(Auth::user()->id);
+            // return $response;
+
             $authUser->payments_paid()->create([
                 'paid_to' => $paid_to,
                 'land_id' => $land,
@@ -70,7 +73,7 @@ class PaymentController extends Controller
                 'amount' => $amount
 
             ]);
-            Session::flash('success', $response->customerMessage);
+            Session::flash('success', $response['ResponseDescription']);
             $paymentTotal = Payment::latest()->where('land_id',$land)
             ->where('paid_by',Auth::user()->id)->sum('amount') ;
             $expectedAmount = Land::find($land)->valuation_Price()->total ;

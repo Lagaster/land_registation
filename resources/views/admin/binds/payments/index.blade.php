@@ -42,7 +42,7 @@
 
                             </span>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary float-right " data-toggle="modal"
+                            <button type="button" class="btn btn-info float-right " data-toggle="modal"
                                 data-target="#modelIdpayment">
                                 Make Payment
                             </button>
@@ -60,22 +60,45 @@
                                         </div>
                                         <div class="modal-body">
                                             <div>
-                                                <div class="text text-center" >
-                                                    Amount Remaining :
-                                            @if ($land->valuation_Price())
-                                                {{ number_format($land->valuation_Price()->total - $paymentTotal) }}
-                                            @endif
-                                                </div>
+                                                <table class="table">
+                                                    <thead>
+
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td scope="row"> Amount Remaining :</td>
+                                                            <td> @if ($land->valuation_Price())
+                                                                {{ number_format($land->valuation_Price()->total - $paymentTotal) }}
+                                                            @endif</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td scope="row">Account Number</td>
+                                                            <td>{{ $land->land_owner()->phone }}</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Account Holder</td>
+                                                            <td> {{ $land->land_owner()->name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Contact</td>
+                                                            <td><a href="mailto:{{ $land->land_owner()->email }}">{{ $land->land_owner()->email }}</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
                                                 <div>
                                                     <form action="{{ route('payments.store') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="land_id" value="{{ $land->id }}" >
                                                         <input type="hidden" name="paid_to" value="{{ $land->land_owner()->id }}" >
+                                                        <input type="hidden" name="phone" value="{{ $land->land_owner()->phone }}" >
                                                         <div class="form-group">
-                                                          <label for="amount">Amount To Pay</label>
+                                                          {{-- <label for="amount">Amount To Pay</label> --}}
                                                           <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount to pay">
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary">Process Payment</button>
+                                                        <button type="submit" class="btn btn-success">Process Payment</button>
 
                                                     </form>
                                                 </div>

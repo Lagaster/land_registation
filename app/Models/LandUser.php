@@ -17,6 +17,24 @@ class LandUser extends Model
     protected $casts = [
         'start' => "datetime:d-m-Y",
     ];
+    /**
+     * Get the owner that owns the LandUser
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    /**
+     * Get the land that owns the LandUser
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function land()
+    {
+        return $this->belongsTo(Land::class, 'land_id', 'id');
+    }
 
 
 }

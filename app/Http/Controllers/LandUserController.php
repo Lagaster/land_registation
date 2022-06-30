@@ -13,6 +13,7 @@ class LandUserController extends Controller
     {
         $landusers =  LandUser::where('verified_at',null)->get();
 
+
         return view('admin.binds.landusers.fullpaid',compact('landusers')) ;
     }
     public function confirmLandTransfer(LandUser $landUser)
