@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\ValuationReport;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
-class ValuationReportPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class ValuationReportPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true ;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ValuationReport  $valuationReport
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ValuationReport $valuationReport)
+    public function view(User $user, User $model)
     {
-        //
+        return true ;
     }
 
     /**
@@ -41,19 +41,7 @@ class ValuationReportPolicy
      */
     public function create(User $user)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ValuationReport  $valuationReport
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function update(User $user, ValuationReport $valuationReport)
-    {
-        if ( $user->isRegistrar() ) {
+        if ($user->isAdmin() || $user->isRegistrar()) {
             # code...
             return true ;
         }
@@ -61,25 +49,43 @@ class ValuationReportPolicy
     }
 
     /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function update(User $user, User $model)
+    {
+        if ($user->isAdmin() || $user->isRegistrar() || $model->id == Auth::user()->id) {
+            # code...
+            return true ;
+        }
+    }
+
+    /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ValuationReport  $valuationReport
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ValuationReport $valuationReport)
+    public function delete(User $user, User $model)
     {
-        //
+        if ($user->isAdmin() || $user->isRegistrar() || $model->id == Auth::user()->id) {
+            # code...
+            return true ;
+        }
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ValuationReport  $valuationReport
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ValuationReport $valuationReport)
+    public function restore(User $user, User $model)
     {
         //
     }
@@ -88,10 +94,10 @@ class ValuationReportPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ValuationReport  $valuationReport
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ValuationReport $valuationReport)
+    public function forceDelete(User $user, User $model)
     {
         //
     }

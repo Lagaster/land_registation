@@ -35,6 +35,21 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function isUser()
+    {
+        # code...
+        return $this->role == "user";
+    }
+    public function isAdmin()
+    {
+        # code...
+        return $this->role == "admin";
+    }
+    public function isRegistrar()
+    {
+        # code...
+        return $this->role == "registrar";
+    }
 
     /**
      * The attributes that should be cast.

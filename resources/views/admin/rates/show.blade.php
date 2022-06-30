@@ -79,7 +79,9 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <h3 class="box-title ">Actions</h3>
-                            <div class="row">
+
+                            @if (auth()->user()->isAdmin() || auth()->user()->isRegistrar())
+                                <div class="row">
                                 <div>
                                     <a class="btn btn-info btn-rounded m-r-5" href="{{route('landRates.edit',$landRate->id)}}" data-toggle="tooltip" title="" > Edit  </a>
 
@@ -112,6 +114,8 @@
                                     </form>
                                 </div>
                             </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>

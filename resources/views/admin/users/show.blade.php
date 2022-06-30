@@ -19,8 +19,10 @@
 
                         <li class="breadcrumb-item active">User show</li>
                     </ol>
-                    <a href="{{ route('users.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
-                            class="fa fa-plus-circle"></i> Create New</a>
+                    @can('create', User::class)
+                    <a href="{{ route('users.create') }}" class="btn btn-info d-none disabled d-lg-block m-l-15"><i
+                        class="fa fa-plus-circle"></i> Create New</a>
+                @endcan
                 </div>
             </div>
         </div>
@@ -76,6 +78,7 @@
                         </div>
                     </p>
                     <div>
+                        @can('update', $user)
                         <div class="special-buttons" >
                             <div>
                                                             <a class="btn btn-outline-purple" href="{{ route('users.edit',$user) }}">Edit User</a>
@@ -90,6 +93,9 @@
 
 
                         </div>
+
+                        @endcan
+
 
 
                         <!-- Modal -->

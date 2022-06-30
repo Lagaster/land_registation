@@ -19,8 +19,11 @@
 
                         <li class="breadcrumb-item active">User show</li>
                     </ol>
-                    <a href="{{ route('users.create') }}" class="btn btn-info d-none disabled d-lg-block m-l-15"><i
+                    @can('create', User::class)
+                        <a href="{{ route('users.create') }}" class="btn btn-info d-none disabled d-lg-block m-l-15"><i
                             class="fa fa-plus-circle"></i> Create New</a>
+                    @endcan
+
                 </div>
             </div>
         </div>

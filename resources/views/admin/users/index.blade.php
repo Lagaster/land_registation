@@ -17,8 +17,15 @@
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active">Users</li>
                     </ol>
-                    <a href="{{ route('users.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+
+                    {{-- @can('create', User::class) --}}
+                    @if (auth()->user()->isAdmin() || auth()->user()->isRegistrar())
+                         <a href="{{ route('users.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                             class="fa fa-plus-circle"></i> Create New</a>
+                    @endif
+
+                    {{-- @endcan --}}
+
                 </div>
             </div>
         </div>
@@ -32,7 +39,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">SYstem users</h4>
+                        <h4 class="card-title">System users</h4>
                         <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
                         <div class="table-responsive m-t-40">
 
@@ -59,7 +66,7 @@
                                                 <a class="btn btn-icon btn-info btn-outline" data-toggle="tooltip"
                                                     data-original-title="View More"
                                                     href="{{ route('users.show', $user) }}">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    <i class="fa fa-eye" aria-hidden="true">view</i>
                                                 </a>
                                             </td>
                                         </tr>

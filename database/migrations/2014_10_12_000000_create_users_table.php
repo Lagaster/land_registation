@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('id_image')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('role')->nullable();//admin,users, registrar
+            $table->string('role')->default('user');//admin,user, registrar
             $table->string('kra_pin')->nullable();
             $table->string('gender')->nullable();
             $table->timestamp('email_verified_at')->nullable();
