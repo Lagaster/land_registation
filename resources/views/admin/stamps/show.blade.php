@@ -77,6 +77,10 @@
                                             <td>Status</td>
                                             <td> {{$stampDuty->status}} </td>
                                         </tr>
+                                        <tr>
+                                            <th>Download file</th>
+                                            <td><a class="btn btn-primary round-info" href="/storage/stampduties/{{ $stampDuty->file }}">View</a></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

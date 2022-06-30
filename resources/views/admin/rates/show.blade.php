@@ -50,6 +50,11 @@
                                             <td>Valid Date</td>
                                             <td> {{$landRate->valid_date}} </td>
                                         </tr>
+                                        <tr>
+                                            <th>Download file</th>
+                                            <td><a class="btn btn-primary round-info" href="/storage/landrates/{{ $landRate->file }}">View</a></td>
+                                        </tr>
+
 
 
                                     </tbody>

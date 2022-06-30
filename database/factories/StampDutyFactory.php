@@ -24,7 +24,7 @@ class StampDutyFactory extends Factory
             'user_id'=>fn()=>User::all()->random(),
             'file'=>$this->faker->imageUrl(),
             'verified_at'=> Carbon::now()->subDays(random_int(1,60)),
-            'verified_by'=>User::where('role', 'landregistrar')->get()-> random()
+            'verified_by'=>User::where('role', 'registrar')->get()-> random()
 
         ];
     }

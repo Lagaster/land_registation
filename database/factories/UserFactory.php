@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'id_image'=>$this->faker->imageUrl(),
             'phone'=>$this->faker->phoneNumber(),
             'address'=>$this->faker->address(),
-            'role'=>$this->faker->randomElement(["admin","landregistrar","user"]),
+            'role'=>$this->faker->randomElement(["admin","registrar","user"]),
             'kra_pin'=>$this->faker->numberBetween(1000),
             'gender'=>$this->faker->randomElement(["male","female"]),
             'remember_token' => Str::random(10)

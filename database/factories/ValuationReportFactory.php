@@ -31,7 +31,7 @@ class ValuationReportFactory extends Factory
             'status'=>$this->faker->randomElement(['pending','approved','rejected']),
             'file'=>$this->faker->imageUrl(),
             'verified_at'=> Carbon::now()->subDays(random_int(1,60)),
-            'verified_by'=>User::where('role', 'landregistrar')->get()-> random()
+            'verified_by'=>User::where('role', 'registrar')->get()-> random()
         ];
     }
 }

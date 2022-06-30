@@ -25,7 +25,7 @@ class LandRateFactory extends Factory
             'given_date'=>$this->faker->date(),
             'file'=>$this->faker->imageUrl(),
             'verified_at'=> Carbon::now()->subDays(random_int(1,60)),
-            'verified_by'=>fn()=>User::where('role', 'landregistrar')->get()-> random()
+            'verified_by'=>fn()=>User::where('role', 'registrar')->get()-> random()
         ];
     }
 }
