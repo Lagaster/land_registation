@@ -62,6 +62,10 @@
                                             <td>Status</td>
                                             <td> {{$valuationReport->status}} </td>
                                         </tr>
+                                        <tr>
+                                            <th>Download file</th>
+                                            <td><a class="btn btn-primary round-info" href="/storage/valuations/{{ $valuationReport->file }}">View</a></td>
+                                        </tr>
 
                                     </tbody>
                                 </table>
