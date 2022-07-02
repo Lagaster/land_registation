@@ -40,11 +40,11 @@
                                     <tbody>
                                         <tr>
                                             <td>Verified by:</td>
-                                            <td> {{$valuationReport->verifiedBy->name}} </td>
+                                            <td> {{$valuationReport->verifiedBy->name ?? ""}} </td>
                                         </tr>
                                         <tr>
                                             <td>Valuated at:</td>
-                                            <td> {{$valuationReport->verified_at}} </td>
+                                            <td> {{$valuationReport->verified_at ?? ""}} </td>
                                         </tr>
                                         <tr>
                                             <td>Land Price</td>
