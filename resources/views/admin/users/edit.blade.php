@@ -35,7 +35,8 @@
               <div class="card-body">
                 <h4 class="card-title">Add New User</h4>
                 <p class="card-text">
-                    <form action="{{ route('users.store') }}" class="row" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('users.update',$user) }}" class="row" enctype="multipart/form-data" method="post">
+                        @method("PUT")
                         <div class="form-group col-md-4">
                             @csrf
                           <label for="">User Name</label>
