@@ -44,7 +44,7 @@
         <div class="login-register" style="background-image:url(../assets/images/background/login-register.jpg);">
             <div class="login-box card">
                 <div class="card-body">
-                    <form class="form-horizontal form-material" id="loginform" action="index.html">
+                    <form class="form-horizontal form-material" id="loginform" action="{{route('login')}}">
                         <h3 class="box-title m-b-20">Sign In</h3>
                         <div class="form-group ">
                             <div class="col-xs-12">
