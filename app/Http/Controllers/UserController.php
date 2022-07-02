@@ -95,7 +95,18 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update($request->validated());
+        $data = $request->validated();
+        $user->update([
+            'email'=>$data['email'],
+            'name'=>$data['name'],
+            'dob'=>$data['dob'],
+            'phone'=>$data['phone'],
+            'email'=>$data['email'],
+            'address'=> $data['address'],
+            'role'=> $data['role'],
+            'kra_pin'=> $data['kra_pin'],
+            'gender'=> $data['gender']
+        ]);
         Session::flash('success',"User Updated");
         return redirect()->route('users.show',$user);
     }

@@ -25,12 +25,12 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ["required","string"],
-            'email' => ["required","email","unique:users,email,except,id"],
+            'email' => ["required","email"],
             'password' =>  ["string","nullable"], // password
             'dob'=> ["required","date"],
-            'image'=> ["nullable","string"],
+            'image'=> ["nullable","file"],
             'national_id'=> ["required","numeric"],
-            'id_image'=> ["nullable","string"],
+            'id_image'=> ["nullable","file"],
             'phone'=> ["required","string"],
             'address'=> ["required","string"],
             'role'=> ["required"],
