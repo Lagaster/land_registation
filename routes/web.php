@@ -20,9 +20,16 @@ use App\Http\Controllers\ValuationReportController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
-});
+    return view('front.welcome');
+})->name('landing-page');
 
+Route::get('/about-us', function () {
+    return view('front.about');
+})->name('about-page');
+
+Route::get('/contact-us', function () {
+    return view('front.contact-us');
+})->name('contact-us-page');
 
 Auth::routes();
 
