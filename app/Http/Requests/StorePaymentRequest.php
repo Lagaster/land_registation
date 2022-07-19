@@ -26,8 +26,8 @@ class StorePaymentRequest extends FormRequest
         return [
             'land_id'=>['required'],
             'paid_to'=>['required'],
-            'amount'=>['required'],
-            'phone'=>['required']
+            'amount'=>['required','numeric'],
+            'phone'=>['required','numeric','starts_with:07,01']
 
         ];
     }

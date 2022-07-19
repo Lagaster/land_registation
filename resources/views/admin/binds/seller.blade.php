@@ -38,6 +38,7 @@
                                     <th>Title Deed</th>
                                     <th>Bind On</th>
                                     <th>Status</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                     <th>Title Deed</th>
                                     <th>bind On</th>
                                     <th>Status</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -61,6 +63,9 @@
                                     </td>
                                     <td>
                                         {{ strtoupper($bind->status) }}
+                                    </td>
+                                    <td>
+                                        {{ $bind->description }}
                                     </td>
                                     <td>
                                        <div class="dropdown">

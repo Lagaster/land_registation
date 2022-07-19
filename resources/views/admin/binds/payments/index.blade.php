@@ -93,10 +93,24 @@
                                                         @csrf
                                                         <input type="hidden" name="land_id" value="{{ $land->id }}" >
                                                         <input type="hidden" name="paid_to" value="{{ $land->land_owner()->id }}" >
-                                                        <input type="hidden" name="phone" value="{{ $land->land_owner()->phone }}" >
+                                                        <div class="form-group">
+                                                          <input type="number" name="phone" id=""
+                                                          value="{{ old('phone') }}"
+                                                          class="form-control  @error('phone') is-invalid @enderror" placeholder="Your Phone Number">
+                                                           @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                                        </div>
                                                         <div class="form-group">
                                                           {{-- <label for="amount">Amount To Pay</label> --}}
-                                                          <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount to pay">
+                                                          <input type="number"   value="{{ old('amount') }}" name="amount" id="amount" class="form-control  @error('amount') is-invalid @enderror" placeholder="Amount to pay">
+                                                           @error('amount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                                         </div>
                                                         <button type="submit" class="btn btn-success">Process Payment</button>
 

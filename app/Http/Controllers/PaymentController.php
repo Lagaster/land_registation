@@ -6,13 +6,14 @@ use App\Models\Bind;
 use App\Models\Land;
 use App\Models\User;
 use App\Models\Payment;
+use App\Models\LandUser;
+use Illuminate\Support\Str;
 use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
-use App\Models\LandUser;
 
 class PaymentController extends Controller
 {
@@ -59,7 +60,6 @@ class PaymentController extends Controller
             $mpesa = new MpesaGateway();
             $response = $mpesa->pay_land($phone, $amount);
             $authUser = User::find(Auth::user()->id);
-            // return $response;
 
             $authUser->payments_paid()->create([
                 'paid_to' => $paid_to,
