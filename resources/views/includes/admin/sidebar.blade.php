@@ -48,11 +48,16 @@
                         <li><a href="{{ route('users.index') }}">System Users</a></li>
                     </ul>
                 </li>  --}}
+                @if (! auth()->user()->isUser() )
                 <li> <a class=" waves-effect waves-dark" href="{{ route('users.index') }}"
-                    aria-expanded="false"><i class="ti-layout-media-right-alt"></i><span class="hide-menu">
-                        Users</span></a>
-
-            </li>
+                    aria-expanded="false">
+                    <i class="ti-layout-media-right-alt">
+                        </i>
+                        <span class="hide-menu">
+                        Users</span></a></li>
+                    
+                @endif
+                
 
 
                 <li> <a class=" waves-effect waves-dark" href="{{ route('valuationReports.index') }}"
