@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Title Deed : {{ $land->title_deed }}</h4>
                     <p class="card-text">
-                        <table class="table table-striped table-inverse table-responsive">
+                        <table class="table table-striped table-inverse">
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>#</th>
@@ -97,10 +97,21 @@
                                         <tr>
                                             <td colspan="3" >
 
+                                                @if ($land->land_owner())
+                                                @if ($land->land_owner()->id !== Auth::user()->id)
+
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-outline-primary text-bold btn-lg" data-toggle="modal" data-target="#modelbind">
                                                     Bind To Buy
                                                 </button>
+                                                
+                                                    
+                                                @endif
+
+                                                @endif
+
+
+                                               
 
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="modelbind" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

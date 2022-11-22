@@ -6,6 +6,7 @@ use App\Models\Land;
 use App\Models\LandRate;
 use App\Models\LandUser;
 use Illuminate\Http\Request;
+use App\Models\ValuationReport;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -37,8 +38,21 @@ class HomeController extends Controller
         ->where('is_owner',true)
         ->get();
 
-        $landRates=LandRate::all();
+        
 
-        return view('admin.index',compact('mylandscount','landscount','landratescount','mylands','landRates'));
+        // my land rates
+        $mylandsIds = $mylands->pluck('land_id');
+        if($user->isUser()){
+            $landRates = LandRate::whereIn('land_id',$mylandsIds)->get();
+        }{
+            $landRates=LandRate::all();
+        }
+
+
+
+
+        $valuationReportCount =  ValuationReport::count();
+
+        return view('admin.index',compact('mylandscount','landscount','landratescount','mylands','landRates','valuationReportCount'));
     }
 }

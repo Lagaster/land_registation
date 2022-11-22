@@ -81,6 +81,8 @@
                                                      <a href="{{ route('binds.edit',$bind->id) }}" class="dropdown-item bg-warning"><i class="fa fa-pencil" aria-hidden="true">Edit</i></a>
 
                                                 <form action="{{ route('binds.destroy',$bind->id) }}" method="post">
+                                                    @method("DELETE")
+                                                    @csrf
                                                     <button type="submit" class="dropdown-item bg-danger"><i class="fa fa-trash" aria-hidden="true">Delete</i></button>
                                                 </form>
                                                 @endif

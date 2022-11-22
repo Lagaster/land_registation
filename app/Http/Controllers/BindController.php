@@ -30,7 +30,7 @@ class BindController extends Controller
     }
     public function buyerBinds()
     {
-        $binds = Bind::query()->with('user')->get();
+        $binds = Bind::query()->whereBelongsTo(Auth::user(),'user')->get();
         return view('admin.binds.buyers',compact('binds'));
     }
 
@@ -115,6 +115,7 @@ class BindController extends Controller
      */
     public function destroy(Bind $bind)
     {
-        //
+        $bind->delete();
+        return back()->with('success','Bind deleted successfully');
     }
 }

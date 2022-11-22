@@ -8,6 +8,7 @@
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h4 class="text-themecolor">Seller Bids Requests</h4>
+          
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
@@ -29,13 +30,19 @@
             <div class="card">
                 <div class="card-body">
                     {{--  <h4 class="card-title">Bids Data Export</h4>
-                    <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>  --}}
+                    <h6 class="">Export data to Copy, CSV, Excel, PDF & Print</h6>  --}}
+                    <h6 class="text text-info card-subtitle" >
+                        Bids made on your lands
+                    </h6>
                     <div class="table-responsive m-t-1">
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Land Plot No</th>
                                     <th>Title Deed</th>
+                                    <th>
+                                        Bid By
+                                    </th>
                                     <th>Bid On</th>
                                     <th>Status</th>
                                     <th>Description</th>
@@ -46,6 +53,9 @@
                                 <tr>
                                     <th>Land Plot No</th>
                                     <th>Title Deed</th>
+                                    <th>
+                                        Bid By
+                                    </th>
                                     <th>bid On</th>
                                     <th>Status</th>
                                     <th>Description</th>
@@ -57,6 +67,11 @@
                                 <tr>
                                     <td>{{ $bind->land->plot_no }}</td>
                                     <td>{{ $bind->land->title_deed }}</td>
+                                    <td>
+                                        <a class="text text-info" href="{{ route('users.show',$bind->user) }}">
+                                            {{ $bind->user->name }}
+                                        </a>
+                                    </td>
 
                                     <td>
                                         {{ $bind->created_at->format("d/m/Y") }}

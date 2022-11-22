@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bind;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class BindSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Bind::factory(10)->create();
     }
 }

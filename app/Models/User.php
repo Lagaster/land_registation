@@ -122,7 +122,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function binds(): HasMany
+    public function bids(): HasMany
     {
         return $this->hasMany(Bind::class);
     }

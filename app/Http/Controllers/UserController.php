@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\AccountCreated;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-        if ($data['image']) {
+        if ( isset($data['image']) ) {
             # upload User Image
             $image = $request->file('image')->store('public/profiles' );
 
@@ -51,15 +52,19 @@ class UserController extends Controller
             $data['image'] = end($image);
         }
         $data = $request->validated();
-        if ($data['id_image']) {
+        if ( isset($data['id_image']) ) {
             # upload User Image
-            $image = $request->file('image')->store('public/national_id' );
+            $image = $request->file('id_image')->store('public/national_id' );
 
             $image =explode('/', $image) ;
             $data['id_image'] = end($image);
         }
         $data['password'] = Hash::make("password");
         $user = User::create($data);
+        // send email to user account created
+        $user->notify(new AccountCreated($user));
+
+
         Session::flash('success',"User created");
         return redirect()->route('users.index');
 

@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
         //         PaymentSeeder::class,
         //         StampDutySeeder::class,
         //         ValuationReportSeeder::class,
-        //         LandUserSeeder::class
+        //         LandUserSeeder::class,
+        //         BindSeeder::class
         //     ]
         // );
 

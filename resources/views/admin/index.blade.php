@@ -109,7 +109,7 @@
                                     <p class="text-muted">Valuation Report</p>
                                 </div>
                                 <div class="ml-auto">
-                                    <h2 class="counter text-success">431</h2>
+                                    <h2 class="counter text-success">{{ $valuationReportCount }}</h2>
                                 </div>
                             </div>
                         </div>
