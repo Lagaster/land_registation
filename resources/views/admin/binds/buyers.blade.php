@@ -7,13 +7,13 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">Buyer Binds Requests</h4>
+            <h4 class="text-themecolor">Buyer Bids Requests</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active">binds</li>
+                    <li class="breadcrumb-item active">bids</li>
                 </ol>
             </div>
         </div>
@@ -28,9 +28,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Binds Data Export</h4>
-                    <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
-                    <div class="table-responsive m-t-40">
+                    {{--  <h4 class="card-title">Bids Data Export</h4>
+                    <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>  --}}
+                    <div class="table-responsive m-t-1">
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -47,7 +47,7 @@
                                     <th>Land Plot No</th>
                                     <th>Title Deed</th>
                                     <th>Land Owner</th>
-                                    <th>bind On</th>
+                                    <th>bid On</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
