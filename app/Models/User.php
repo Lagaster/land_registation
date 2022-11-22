@@ -61,10 +61,10 @@ class User extends Authenticatable
     ];
 
     public function national_id_Image(){
-        return "/storage/national_ids".'/'. $this->id_image;
+        return "/storage/national_id".'/'. $this->id_image;
     }
     public function user_profile(){
-        return "/storage/profiles".'/'. $this->id_image;
+        return "/storage/profiles".'/'. $this->image;
     }
 
 

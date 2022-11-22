@@ -79,7 +79,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer">
-            © 2018 Eliteadmin by themedesigner.in
+            © {{ date("Y") }} land registration system
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

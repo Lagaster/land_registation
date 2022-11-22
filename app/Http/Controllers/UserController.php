@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -109,6 +110,56 @@ class UserController extends Controller
         ]);
         Session::flash('success',"User Updated");
         return redirect()->route('users.show',$user);
+    }
+    public function updateUser(Request $request, User $user)
+    {
+        # update user profile
+        // update only the image, phone  and email
+        $data = $request->validate([
+            'image'=>["image","nullable","max:3000","mimes:jpeg,png,jpg"],
+            'phone'=>["required","string","max:15","min:10","unique:users,phone,".$user->id],
+            'email'=>["required","string","email","max:255","unique:users,email,".$user->id],
+
+        ]);
+        // update password if previous password is correct
+        if ($request->password || $request->old_password) {
+            # update password
+            $request->validate([
+                'password'=>["required","string","min:8"],
+                'old_password'=>["required","string","min:8","max:255"],
+            ]);
+            if ($request->password !== $request->confirm_password ){
+                Session::flash('error',"The password confirmation does not match.");
+                return redirect()->back();
+            }
+
+            if (Hash::check($request->old_password, $user->password)) {
+                # update password
+                $user->update([
+                    'password'=>Hash::make($request->password)
+                ]);
+                Session::flash('success',"Password Updated");
+            }else{
+                Session::flash('error',"Old password is incorrect");
+                return redirect()->back();
+            }
+        }
+        if ( isset($data['image']) ) {
+            // dd($data['image']);
+            // check if user has an image
+            if ($user->image) {
+                # delete old image
+                Storage::delete('public/profiles/'.$user->image);
+            }
+            # upload User Image
+            $image = $request->file('image')->store('public/profiles' );
+
+            $image =explode('/', $image) ;
+            $data['image'] = end($image);
+        }
+        $user->update($data);
+        Session::flash('success',"User Updated");
+        return redirect()->back();
     }
 
     /**

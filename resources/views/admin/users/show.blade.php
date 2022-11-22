@@ -20,9 +20,9 @@
                         <li class="breadcrumb-item active">User show</li>
                     </ol>
                     @can('create', User::class)
-                    <a href="{{ route('users.create') }}" class="btn btn-info d-none disabled d-lg-block m-l-15"><i
-                        class="fa fa-plus-circle"></i> Create New</a>
-                @endcan
+                        <a href="{{ route('users.create') }}" class="btn btn-info d-none disabled d-lg-block m-l-15"><i
+                                class="fa fa-plus-circle"></i> Create New</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -35,38 +35,44 @@
         <div class="row">
             <div class="col-4">
                 <div class="card border-dark my-flex">
-                  <img class="card-img-top  " src="{{ $user->user_profile() }}" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title text text-center">{{ $user->name }} <a href="mailto:{{ $user->email }}">{{ $user->email }}</a> </h4>
-                    <h4 class=" text text-center" > <span class="badge badge-info">{{Str::upper($user->role)  }}</span> </h4>
-                    <p class="card-text">
+                    <img class="card-img-top  " src="{{ $user->user_profile() }}" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title text text-center">{{ $user->name }} <a
+                                href="mailto:{{ $user->email }}">{{ $user->email }}</a> </h4>
+                        <h4 class=" text text-center"> <span class="badge badge-info">{{ Str::upper($user->role) }}</span>
+                        </h4>
+                        <p class="card-text">
 
-                        <div>Phone:  <span class=" text text-bold" >{{ $user->phone }} </span>  </div>
-                        <div>Address:  <span class=" text text-bold" >{{ $user->address }} </span> </div>
-                        <div>Gender:  <span class=" text text-bold" >{{ $user->gender }}</div>
-                        <div>National Id:  <span class=" text text-bold" >{{ $user->national_id }} </span> </div>
-                        <div>DOB:  <span class=" text text-bold" >{{ $user->dob }} </span> </div>
+                        <div>Phone: <span class=" text text-bold">{{ $user->phone }} </span> </div>
+                        <div>Address: <span class=" text text-bold">{{ $user->address }} </span> </div>
+                        <div>Gender: <span class=" text text-bold">{{ $user->gender }}</div>
+                        <div>National Id: <span class=" text text-bold">{{ $user->national_id }} </span> </div>
+                        <div>DOB: <span class=" text text-bold">{{ $user->dob }} </span> </div>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modelId">
-                          View More
+                            View More
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                            aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">
 
-                                            {{ $user->name ." Profile Info" }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            {{ $user->name . ' Profile Info' }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                     <div class="modal-body">
-                                        KRA PIN {{ $user->kra_pin }}
+                                        <h1 class="text text-center" >
+                                           KRA PIN {{ $user->kra_pin }} 
+                                        </h1>
+                                        
                                         <div>
-                                            <img src="{{ $user->national_id_Image()}}" alt="National Id Image">
+                                            <img src="{{ $user->national_id_Image() }}" width="400" id="nationalId" height="200" alt="National Id Image">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -76,59 +82,61 @@
                                 </div>
                             </div>
                         </div>
-                    </p>
-                    <div>
-                        @can('update', $user)
-                        <div class="special-buttons" >
-                            <div>
-                                                            <a class="btn btn-outline-purple" href="{{ route('users.edit',$user) }}">Edit User</a>
+                        </p>
+                        <div>
+                            @can('update', $user)
+                                <div class="special-buttons">
+                                    <div>
+                                        <a class="btn btn-outline-purple" href="{{ route('users.edit', $user) }}">Edit User</a>
 
-                            </div>
-                            <div>
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modelDeleteId">
-                              Delete User
-                            </button>
-                            </div>
-                            <!-- Button trigger modal -->
-
-
-                        </div>
-
-                        @endcan
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                            data-target="#modelDeleteId">
+                                            Delete User
+                                        </button>
+                                    </div>
+                                    <!-- Button trigger modal -->
 
 
+                                </div>
+                            @endcan
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="modelDeleteId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Delete User Account</h5>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modelDeleteId" tabindex="-1" role="dialog"
+                                aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete User Account</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h2 class="text text-center text-danger" >Warning!!</h2>
-                                        <h4>
-                                            THis Action is permanent and can not ne reversed once done.
-                                        </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h2 class="text text-center text-danger">Warning!!</h2>
+                                            <h4>
+                                                THis Action is permanent and can not ne reversed once done.
+                                            </h4>
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
 
-                                        <form action="{{ route('users.destroy',$user) }}" method="post">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                            <form action="{{ route('users.destroy', $user) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  </div>
                 </div>
             </div>
             <div class="col-md-8">
@@ -136,35 +144,34 @@
                     <div class="card-body">
                         <h4 class="card-title">Lands Owns</h4>
                         <p class="card-text">
-                            <table class="table table-hover table-bordered table-responsive">
-                                <thead class="thead-inverse">
+                        <table class="table table-hover table-bordered">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Title Deed</th>
+                                    <th>Size</th>
+                                    <th>Since</th>
+                                    <th>Until</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($user->lands as $land)
                                     <tr>
-                                        <th>Title Deed</th>
-                                        <th>Size</th>
-                                        <th>Since</th>
-                                        <th>Until</th>
+                                        <td scope="row">{{ $land->title_deed }}</td>
+                                        <td>{{ $land->size . 'Hectares' }}</td>
+                                        <td>{{ $land->pivot->start }}</td>
+                                        <td>{{ $land->pivot->end }}</td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($user->lands as $land)
-                                        <tr>
-                                            <td scope="row">{{ $land->title_deed }}</td>
-                                            <td>{{ $land->size . "Hectares"}}</td>
-                                            <td>{{ $land->pivot->start }}</td>
-                                            <td>{{ $land->pivot->end}}</td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td  rowspan="4" >
-                                                No record yet
-                                            </td>
-                                        </tr>
-
-                                        @endforelse
+                                @empty
+                                    <tr>
+                                        <td rowspan="4">
+                                            No record yet
+                                        </td>
+                                    </tr>
+                                @endforelse
 
 
-                                    </tbody>
-                            </table>
+                            </tbody>
+                        </table>
                         </p>
                     </div>
                 </div>
@@ -188,7 +195,7 @@
 @endsection
 @push('styles')
     <style>
-        .my-flex{
+        .my-flex {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -196,19 +203,28 @@
             align-items: center;
             /* background: green */
         }
-        .card-img-top{
+
+        .card-img-top {
             height: 10rem;
             width: 80%;
             border: 1px sold black;
             border-radius: 2rem;
 
         }
-        .special-buttons{
+
+        .special-buttons {
             display: flex;
             justify-content: space-around
         }
-        .modal-dialog{
+
+        .modal-dialog {
             background: rgb(237, 226, 226);
+        }
+        .nationalId{
+            border: 1px solid black;
+            border-radius: 1rem;
+            object-fit: cover;
+            object-position: center;
         }
     </style>
 @endpush

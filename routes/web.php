@@ -60,4 +60,5 @@ Route::middleware('auth')->group(function () {
     Route::get('binds/buyer/payments/{bind}', [PaymentController::class, 'index'])->name('binds.buyer.payments');
     Route::get('binds/seller', [BindController::class, 'sellerBinds'])->name('binds.seller');
     Route::resource('binds', BindController::class)->except('index');
+    Route::put('user/update/{user}',[UserController::class,'updateUser'])->name('user.update');
 });
